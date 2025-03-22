@@ -98,7 +98,7 @@ export default function Mobilenav() {
               </div>
             }
           />
-          <Tab
+          {/* <Tab
             key="Reel"
             href="/reel"
             title={
@@ -135,7 +135,7 @@ export default function Mobilenav() {
                 <span className="text-tiny">Shorts</span>
               </div>
             }
-          />
+          /> */}
           <Tab
             key="Booking"
             href="/booking"

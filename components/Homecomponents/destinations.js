@@ -8,37 +8,39 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Image from "next/image";
-
+import Nearby1 from "@/public/Nearbydestination/Nearby1.jpg"
+import Nearby2 from "@/public/Nearbydestination/Nearby2.jpg"
+import Nearby3 from "@/public/Nearbydestination/Nearby3.jpg"
+import Nearby4 from "@/public/Nearbydestination/Nearby4.jpg"
 const destinations = [
   {
     name: "Kamshet",
     properties: 3,
-    image:
-      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-LQbSJqpPmFvGBP9j8RU4gyjQ0sK37T.png",
+    image:Nearby1,
   },
   {
     name: "Pawna Lake",
     properties: 23,
-    image:
-      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-LQbSJqpPmFvGBP9j8RU4gyjQ0sK37T.png",
+    image:Nearby1,
+
   },
   {
     name: "Lavasa",
     properties: 2,
-    image:
-      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-LQbSJqpPmFvGBP9j8RU4gyjQ0sK37T.png",
+       image:Nearby2,
+
   },
   {
     name: "Lonavala",
     properties: 7,
-    image:
-      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-LQbSJqpPmFvGBP9j8RU4gyjQ0sK37T.png",
+       image:Nearby3,
+
   },
   {
     name: "Khopoli",
     properties: 1,
-    image:
-      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-LQbSJqpPmFvGBP9j8RU4gyjQ0sK37T.png",
+       image:Nearby4,
+
   },
 ];
 
@@ -63,7 +65,7 @@ export default function DestinationsCarousel() {
                 className="pl-2 md:pl-4 basis-1/3 md:basis-1/2 lg:basis-1/4"
               >
                 <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
-                  <img
+                  <Image
                     src={destination.image || "/placeholder.svg"}
                     alt={destination.name}
                     fill="true"
