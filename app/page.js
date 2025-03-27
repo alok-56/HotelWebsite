@@ -12,7 +12,6 @@ import Nav from "@/components/Navbarcomponent/Nav";
 export default function LandingPage() {
   return (
     <main>
-      <Nav />
       <Herosection />
       <LuxuryHotel/>
       <DestinationsCarousel />
