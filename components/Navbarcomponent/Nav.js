@@ -2,6 +2,7 @@
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button} from "@heroui/react";
 import {ChevronDown } from "lucide-react"
 import {Avatar} from "@heroui/react";
+import Profileavatar from "./Profile";
 
 export const AcmeLogo = () => {
   return (
@@ -18,7 +19,7 @@ export const AcmeLogo = () => {
 
 export default function Nav() {
   return (
-    <Navbar shouldHideOnScroll maxWidth="full" className="w-full h-20">
+    <Navbar shouldHideOnScroll maxWidth="full" className="w-full h-20 border-b border-gray-300">
       <NavbarBrand className="-ml-4">
         <AcmeLogo />
         <p className="font-bold  text-inherit">HOTEL BOOKING</p>
@@ -115,8 +116,7 @@ export default function Nav() {
 
          
         </div>
-        <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
-
+         <Profileavatar/>
     </Navbar>
   );
 }
