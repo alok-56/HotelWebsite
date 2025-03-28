@@ -9,6 +9,7 @@ import {
 } from "@heroui/react";
 import { ChevronDown } from "lucide-react";
 import { Avatar } from "@heroui/react";
+import Profileavatar from "./Profile";
 
 export const AcmeLogo = () => {
   return (
@@ -25,7 +26,11 @@ export const AcmeLogo = () => {
 
 export default function Nav() {
   return (
-    <Navbar shouldHideOnScroll maxWidth="full" className="w-full h-20">
+    <Navbar
+      shouldHideOnScroll
+      maxWidth="full"
+      className="w-full h-20 border-b border-gray-300"
+    >
       <NavbarBrand className="-ml-4">
         <AcmeLogo />
         <p className="font-bold  text-inherit">HOTEL BOOKING</p>
@@ -38,7 +43,7 @@ export default function Nav() {
         <Link href="/about" className="text-gray-700 hover:text-[#106C83] ">
           About Us
         </Link>
-        <Link href="/about" className="text-gray-700 hover:text-[#106C83] ">
+        <Link href="/b2b" className="text-gray-700 hover:text-[#106C83] ">
           B2B
         </Link>
 
@@ -87,7 +92,7 @@ export default function Nav() {
           Contact Us
         </Link>
       </div>
-      
+
       <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
     </Navbar>
   );
