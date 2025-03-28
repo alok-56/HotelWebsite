@@ -1,11 +1,8 @@
-import HotelForm from '@/components/Aboutuscomponents/Hotelb2bform'
 import React from 'react'
 
-function page() {
+const page = () => {
   return (
-    <div>
-    <HotelForm/>
-    </div>
+    <div>page</div>
   )
 }
 

@@ -38,7 +38,7 @@ export default function Nav() {
             About Us
           </Link>
           <Link
-            href="/about"
+            href="/b2b"
             className="text-gray-700 hover:text-[#106C83] "
           >
            B2B
