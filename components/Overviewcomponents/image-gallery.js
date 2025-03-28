@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export function ImageGallery({ images }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -17,7 +18,7 @@ export function ImageGallery({ images }) {
   return (
     <>
       <div className="relative h-72 md:h-96 overflow-hidden rounded-lg">
-        <motion.img
+        <Image
           key={currentIndex}
           src={images[currentIndex]}
           alt={`Property image ${currentIndex + 1}`}
@@ -75,7 +76,7 @@ export function ImageGallery({ images }) {
             >
               <ChevronRight className="h-6 w-6" />
             </Button>
-            <motion.img
+            <Image
               key={currentIndex}
               src={images[currentIndex]}
               alt={`Property image ${currentIndex + 1}`}

@@ -155,7 +155,7 @@ export function PropertyCard({
             ))}
           </div>
 
-          <div className="mt-4 flex gap-4 items-center justify-between">
+          {/* <div className="mt-4 flex gap-4 items-center justify-between">
             <div>
               <div className="flex items-baseline gap-1.5">
                 <span className="text-2xl font-bold text-gray-900">
@@ -170,7 +170,7 @@ export function PropertyCard({
               <span className="text-sm text-gray-500">{priceSubtext}</span>
             </div>
 
-            {/* Included Meals Badge */}
+            
             {includedMeals && (
               <div className="flex items-center gap-2 rounded-full bg-green-50 px-2 py-1">
                 <svg
@@ -185,7 +185,7 @@ export function PropertyCard({
                 </span>
               </div>
             )}
-          </div>
+          </div> */}
         </div>
       </div>
     </Card>
