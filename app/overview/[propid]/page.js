@@ -194,13 +194,13 @@ export default function PropertyOverview() {
           </div>
         </div>
 
-        <div className="bg-gray-50/50 ">
+        <div className="bg-gray-50/50">
           <div className="w-full px-4 mx-auto">
             <h2 className="md:text-4xl font-semibold text-gray-800 mb-8">
               All Rooms
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-12">
-              <Room></Room>
+            <div className="grid grid-cols-1 gap-4 md:gap-12">
+              <Room />
             </div>
           </div>
         </div>
@@ -209,7 +209,7 @@ export default function PropertyOverview() {
           <TabsList>
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="amenities">Amenities</TabsTrigger>
-           
+
             <TabsTrigger value="photos">Photos</TabsTrigger>
           </TabsList>
           <TabsContent value="overview">

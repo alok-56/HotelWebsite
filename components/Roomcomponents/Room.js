@@ -1,5 +1,3 @@
-"use client";
-
 import { Heart } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
@@ -38,8 +36,9 @@ export function Room() {
 
   return (
     <Card className="group relative overflow-hidden rounded-xl border-0 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-300 hover:shadow-[0_8px_40px_rgb(0,0,0,0.16)]">
-      <div className="relative">
-        <div className="relative aspect-[4/3] overflow-hidden">
+      <div className="flex relative">
+        {/* Image Section */}
+        <div className="relative aspect-[5/3] w-1/2 overflow-hidden">
           <img
             src={
               images[currentImageIndex] ||
@@ -47,7 +46,7 @@ export function Room() {
             }
             alt={title}
             fill="true"
-            className="object-cover  transition-all duration-700 ease-in-out group-hover:scale-105"
+            className="object-cover transition-all duration-700 ease-in-out group-hover:scale-105"
           />
 
           {/* Premium Gradient Overlay */}
@@ -128,8 +127,8 @@ export function Room() {
           </div>
         </div>
 
-        {/* Content */}
-        <div className="p-5">
+        {/* Content Section */}
+        <div className="p-5 w-1/2">
           <div className="flex items-start justify-between gap-4">
             <div>
               <h3 className="font-semibold md:text-xl text-gray-900 leading-tight">
@@ -138,10 +137,6 @@ export function Room() {
               <p className="mt-1 text-sm font-medium text-gray-500">
                 {location}
               </p>
-            </div>
-            <div className="flex items-center gap-1 rounded-lg bg-gray-50 px-2 py-1">
-              <span className="text-amber-400">⭐</span>
-              <span className="font-semibold">{rating}</span>
             </div>
           </div>
 
