@@ -70,41 +70,9 @@ export default function Nav() {
               </div>
             </div>
           </div>
-          <div className="relative group">
-            <button className="flex items-center text-gray-700 hover:text-[#106C83] ">
-            Events
-              <ChevronDown className="h-4 w-4 ml-1" />
-            </button>
-            <div className="absolute hidden group-hover:block z-10 bg-white shadow-lg rounded-md w-48 mt-1">
-              <div className="py-1">
-                <Link
-                  href="/category/fabrics"
-                  className="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-[#106C83] text-sm"
-                >
-                  Fabrics
-                </Link>
-                <Link
-                  href="/category/threads"
-                  className="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-[#106C83] text-sm"
-                >
-                  Threads
-                </Link>
-                <Link
-                  href="/category/accessories"
-                  className="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-[#106C83] text-sm"
-                >
-                  Accessories
-                </Link>
-              </div>
-            </div>
-          </div>
+          
 
-          <Link
-            href="/eco-friendly"
-            className="text-gray-700 hover:text-[#106C83] "
-          >
-            MICE/GROUP Packages
-          </Link>
+         
           <Link
             href="/contact"
             className="text-gray-700 hover:text-[#106C83] "
