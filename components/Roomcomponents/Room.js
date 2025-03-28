@@ -3,16 +3,17 @@ import { Card } from "@/components/ui/card";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import Room1 from "@/public/hotelraj/rooms/room1.jpg";
+import Room2 from "@/public/hotelraj/rooms/room2.jpg";
+import Room3 from "@/public/hotelraj/rooms/room3.jpg";
+import Room4 from "@/public/hotelraj/rooms/room4.jpg";
+import Room5 from "@/public/hotelraj/rooms/room5.jpg";
 
 export function Room() {
   const [isLiked, setIsLiked] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const images = [
-    "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80",
-    "https://images.unsplash.com/photo-1569336415962-a4bd9f69c907?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1631&q=80",
-    "https://images.unsplash.com/photo-1533641988-e6f57625a12c?crop=entropy&cs=tinysrgb&fit=max&ixid=MXwyMDg5NDR8MHx8c2VhcmNofDE2fHxpbWFnZXxlbnwwfHx8fDE2NjI5NjAzNjA&ixlib=rb-1.2.1&q=80&w=1080"
-  ];
+  const images = [Room1, Room2, Room3, Room4, Room5];
 
   const title = "Mountain View Villa near Panshet";
   const location = "Bhagatwadi, Pune";
@@ -37,9 +38,9 @@ export function Room() {
   return (
     <Card className="group relative overflow-hidden rounded-xl border-0 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-300 hover:shadow-[0_8px_40px_rgb(0,0,0,0.16)]">
       <div className="flex relative">
-        {/* Image Section */}
+        
         <div className="relative aspect-[5/3] w-1/2 overflow-hidden">
-          <img
+          <Image
             src={
               images[currentImageIndex] ||
               "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80"
@@ -127,7 +128,6 @@ export function Room() {
           </div>
         </div>
 
-        {/* Content Section */}
         <div className="p-5 w-1/2">
           <div className="flex items-start justify-between gap-4">
             <div>

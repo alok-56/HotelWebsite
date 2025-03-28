@@ -205,11 +205,12 @@ export default function PropertyOverview() {
           </div>
         </div>
 
-        <Tabs defaultValue="overview" className="mt-12">
+        <Tabs defaultValue="overview" className="mt-8">
           <TabsList>
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="amenities">Amenities</TabsTrigger>
-
+            <TabsTrigger value="location">Location</TabsTrigger>
+            <TabsTrigger value="reviews">Reviews</TabsTrigger>
             <TabsTrigger value="photos">Photos</TabsTrigger>
           </TabsList>
           <TabsContent value="overview">
