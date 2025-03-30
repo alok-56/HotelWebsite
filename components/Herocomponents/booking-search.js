@@ -47,7 +47,7 @@ export default function BookingSearch({ className }) {
   };
 
   const handleSearch = () => {
-    router.push(`/properties/${destination}`)
+    router.push(`/properties/2`)
 
 
   };

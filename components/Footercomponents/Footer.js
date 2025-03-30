@@ -37,7 +37,7 @@ export default function HotelFooter() {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-white">Quick Links</h3>
             <ul className="space-y-2">
-              {["Home", "About us", "Contact us", "B2B"].map((item) => (
+              {/* {["Home", "About us", "Contact us", "B2B"].map((item) => (
                 <li key={item}>
                   <Link
                     href="#"
@@ -46,7 +46,39 @@ export default function HotelFooter() {
                     {item}
                   </Link>
                 </li>
-              ))}
+              ))} */}
+              <li>
+                <Link
+                  href="/"
+                  className="text-sm hover:text-white transition-colors"
+                >
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/about"
+                  className="text-sm hover:text-white transition-colors"
+                >
+                  About us
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/contactus"
+                  className="text-sm hover:text-white transition-colors"
+                >
+                  Contact us
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/b2b"
+                  className="text-sm hover:text-white transition-colors"
+                >
+                  B2B
+                </Link>
+              </li>
             </ul>
           </div>
           <div className="space-y-4">
@@ -95,19 +127,19 @@ export default function HotelFooter() {
           </p>
           <div className="flex space-x-4 mt-4 sm:mt-0">
             <Link
-              href="#"
+              href="/privacypolicy"
               className="text-sm hover:text-white transition-colors"
             >
               Privacy Policy
             </Link>
             <Link
-              href="#"
+              href="/termsservice"
               className="text-sm hover:text-white transition-colors"
             >
               Terms of Service
             </Link>
             <Link
-              href="#"
+              href="/cookiespolicy"
               className="text-sm hover:text-white transition-colors"
             >
               Cookie Policy

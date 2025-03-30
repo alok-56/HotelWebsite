@@ -67,19 +67,19 @@ export default function Nav() {
                 Hotel Raj Palace
               </Link>
               <Link
-                href="/category/accessories"
+                href="/properties/1"
                 className="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-[#106C83] text-sm"
               >
                 Brill A G Star
               </Link>
               <Link
-                href="/category/accessories"
+                href="/properties/1"
                 className="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-[#106C83] text-sm"
               >
                 Hotel Lake View Royal
               </Link>
               <Link
-                href="/category/accessories"
+                href="/properties/1"
                 className="block px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-[#106C83] text-sm"
               >
                 Manner Residency
@@ -88,7 +88,7 @@ export default function Nav() {
           </div>
         </div>
 
-        <Link href="/contact" className="text-gray-700 hover:text-[#106C83] ">
+        <Link href="/contactus" className="text-gray-700 hover:text-[#106C83] ">
           Contact Us
         </Link>
       </div>

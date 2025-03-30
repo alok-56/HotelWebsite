@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export function PropertyCard({
   title,
@@ -30,15 +31,17 @@ export function PropertyCard({
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
+  const router = useRouter();
+
   return (
-    <Card className="group relative overflow-hidden rounded-xl border-0 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-300 hover:shadow-[0_8px_40px_rgb(0,0,0,0.16)]">
+    <Card
+      onClick={() => router.push("/properties/2")}
+      className="group relative overflow-hidden rounded-xl border-0 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-300 hover:shadow-[0_8px_40px_rgb(0,0,0,0.16)]"
+    >
       <div className="relative ">
         <div className="relative aspect-[4/3] overflow-hidden ">
-          <img
-            src={
-              images[currentImageIndex] ||
-              "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80"
-            }
+          <Image
+            src={images[currentImageIndex]}
             alt={title}
             fill="true"
             className="object-cover  transition-all duration-700 ease-in-out group-hover:scale-105"

@@ -17,12 +17,8 @@ export function Room() {
 
   const title = "Mountain View Villa near Panshet";
   const location = "Bhagatwadi, Pune";
-  const rating = 4.6;
   const price = 8999;
   const originalPrice = 9999;
-  const description =
-    "with Mountain Climbing, River View, Nature Walk, Outdoor & Indoor Games, Jungle Safari";
-  const priceSubtext = "| Max 18 Guests";
   const propertyType = "Entire Villa";
   const includedMeals = "Breakfast and Dinner";
   const amenities = ["Mountain View", "River View", "Nature Walk"];
@@ -37,9 +33,10 @@ export function Room() {
 
   return (
     <Card className="group relative overflow-hidden rounded-xl border-0 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-300 hover:shadow-[0_8px_40px_rgb(0,0,0,0.16)]">
-      <div className="flex relative">
+      <div className="flex flex-col md:flex-row relative">
         
-        <div className="relative aspect-[5/3] w-1/2 overflow-hidden">
+        {/* Image Section */}
+        <div className="relative aspect-[5/3] w-full md:w-1/2 overflow-hidden">
           <Image
             src={
               images[currentImageIndex] ||
@@ -52,13 +49,6 @@ export function Room() {
 
           {/* Premium Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-
-          {/* Property Type Tag */}
-          {propertyType && (
-            <span className="absolute left-4 top-4 rounded-full bg-white/95 px-4 py-1.5 text-xs font-medium text-purple-600 shadow-sm backdrop-blur-sm transition-transform duration-300 ease-out group-hover:scale-105">
-              {propertyType}
-            </span>
-          )}
 
           {/* Favorite Button */}
           <button
@@ -128,7 +118,8 @@ export function Room() {
           </div>
         </div>
 
-        <div className="p-5 w-1/2">
+        {/* Content Section */}
+        <div className="p-5 w-full md:w-1/2">
           <div className="flex items-start justify-between gap-4">
             <div>
               <h3 className="font-semibold md:text-xl text-gray-900 leading-tight">
@@ -139,10 +130,6 @@ export function Room() {
               </p>
             </div>
           </div>
-
-          <p className="mt-3 md:text-sm text-xs text-gray-600 line-clamp-2">
-            {description}
-          </p>
 
           {/* Amenities */}
           <div className="mt-4 flex flex-wrap gap-2">
@@ -168,7 +155,6 @@ export function Room() {
                   </span>
                 )}
               </div>
-              <span className="text-sm text-gray-500">{priceSubtext}</span>
             </div>
 
             {includedMeals && (
@@ -185,6 +171,13 @@ export function Room() {
                 </span>
               </div>
             )}
+          </div>
+
+          {/* Book Now Button */}
+          <div className="mt-6 flex justify-center md:justify-start">
+            <button className="px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300">
+              Book Now
+            </button>
           </div>
         </div>
       </div>

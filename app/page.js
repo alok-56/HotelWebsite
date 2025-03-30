@@ -13,13 +13,13 @@ export default function LandingPage() {
   return (
     <main>
       <Herosection />
-      <LuxuryHotel/>
+      <LuxuryHotel />
       <DestinationsCarousel />
       <Allproperty />
       {/* <AnimatedTestimonialsDemo/> */}
-      <AmenitiesSection/>
-      <EnhancedHotelServices/>
-      <ContactSpeedDial/>
+      <AmenitiesSection />
+      <EnhancedHotelServices />
+      <ContactSpeedDial />
     </main>
   );
 }

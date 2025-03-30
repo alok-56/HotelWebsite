@@ -26,13 +26,10 @@ import Nearby1 from "@/public/Nearbydestination/Nearby1.jpg";
 import Nearby2 from "@/public/Nearbydestination/Nearby2.jpg";
 import Nearby3 from "@/public/Nearbydestination/Nearby3.jpg";
 
-const Allproperty = () => {
+const Hotels = () => {
   return (
     <div className="min-h-screen bg-gray-50/50 md:px-4 py-8 pb-20 md:pb-10">
       <div className="w-full px-4 mx-auto">
-        <h2 className="md:text-4xl font-semibold text-gray-800 mb-8">
-          Featured Hotels
-        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-12">
           <PropertyCard
             title="Brill Rooms"
@@ -108,4 +105,4 @@ const Allproperty = () => {
   );
 };
 
-export default Allproperty;
+export default Hotels;

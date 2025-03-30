@@ -145,22 +145,28 @@ const Property = () => {
             Explore Other Area
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-5">
-            {[Reception1, Reception2,Reception3, Looby1, Looby2, Lift1, Lift2].map(
-              (room, index) => (
-                <div
-                  key={index}
-                  className="rounded-xl overflow-hidden shadow-sm border bg-white"
-                >
-                  <div className="image-hover h-64">
-                    <Image
-                      src={room}
-                      alt={`Luxury room ${room}`}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
+            {[
+              Reception1,
+              Reception2,
+              Reception3,
+              Looby1,
+              Looby2,
+              Lift1,
+              Lift2,
+            ].map((room, index) => (
+              <div
+                key={index}
+                className="rounded-xl overflow-hidden shadow-sm border bg-white"
+              >
+                <div className="image-hover h-64">
+                  <Image
+                    src={room}
+                    alt={`Luxury room ${room}`}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-              )
-            )}
+              </div>
+            ))}
           </div>
         </section>
 

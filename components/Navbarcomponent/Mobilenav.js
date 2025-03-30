@@ -34,17 +34,14 @@ export default function Mobilenav() {
       case "/":
         setactiveitem("home");
         break;
-      case "/explore":
-        setactiveitem("Explore");
+      case "/hotel":
+        setactiveitem("Hotels");
         break;
       case "/booking":
         setactiveitem("Booking");
         break;
       case "/bookings":
         setactiveitem("Bookings");
-        break;
-      case "/reel":
-        setactiveitem("Reel");
         break;
       case "/profile":
         setactiveitem("Profile");
@@ -86,15 +83,15 @@ export default function Mobilenav() {
             }
           />
           <Tab
-            key="Explore"
-            href="/explore"
+            key="Hotels"
+            href="/hotel"
             title={
               <div
-                onClick={() => router.push("/explore")}
+                onClick={() => router.push("/hotel")}
                 className="flex flex-col justify-center items-center gap-1"
               >
                 <MdOutlineExplore className="h-6 w-6" />
-                <span className="text-tiny">Explore</span>
+                <span className="text-tiny">Hotels</span>
               </div>
             }
           />

@@ -77,7 +77,7 @@ export default function EnhancedHotelServices() {
   }
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 py-16 bg-gradient-to-b from-blue-50 via-white to-blue-50">
+    <div className="w-full max-w-7xl mx-auto px-4 py-16 bg-gradient-to-b from-blue-50 via-white to-blue-50 mb-20">
       <div className="text-center mb-16">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}

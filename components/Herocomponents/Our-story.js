@@ -63,7 +63,7 @@ export default function LuxuryHotel() {
   }, [images.length])
 
   return (
-    <div className="w-full bg-[#f0f5f8] min-h-screen">
+    <div className="w-full bg-[#f0f5f8] min-h-screen mt-44 md:mt-0 lg:mt-0">
       <div className="max-w-7xl mx-auto px-4 py-16 md:py-24 lg:py-12">
         <div ref={sectionRef} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Image Gallery */}
