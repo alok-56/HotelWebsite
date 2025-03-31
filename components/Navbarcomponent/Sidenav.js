@@ -49,7 +49,7 @@ const navigationItems = [
     href: "/terms-and-conditions",
     icon: <Handshake strokeWidth={1.5} />,
   },
-  { name: "Contact Us", href: "/contact", icon: <Headset strokeWidth={1.5} /> },
+  { name: "Contact Us", href: "/contactus", icon: <Headset strokeWidth={1.5} /> },
 ];
 
 export default function Mobilenav() {
