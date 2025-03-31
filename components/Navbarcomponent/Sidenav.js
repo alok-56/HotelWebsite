@@ -38,15 +38,15 @@ const navigationItems = [
     href: "/b2b",
     icon: <HandPlatter strokeWidth={1.5} />,
   },
-  { name: "Properties", href: "/HOTEL", icon: <SmilePlus strokeWidth={1.5} /> },
+  { name: "Properties", href: "/hotel", icon: <SmilePlus strokeWidth={1.5} /> },
   {
     name: "Privacy Policy",
-    href: "/privacy-policy",
+    href: "/privacypolicy",
     icon: <GlobeLock strokeWidth={1.5} />,
   },
   {
     name: "Terms & conditions",
-    href: "/terms-and-conditions",
+    href: "/termsservice",
     icon: <Handshake strokeWidth={1.5} />,
   },
   { name: "Contact Us", href: "/contactus", icon: <Headset strokeWidth={1.5} /> },
@@ -96,7 +96,7 @@ export default function Mobilenav() {
           ))}
           <Button
             onPress={() => {
-              router.push("/"), setOpen(false);
+              router.push("/hotel"), setOpen(false);
             }}
             className="px-8 py-0.5 rounded-sm w-full mt-auto border-none hover:bg-[#004AAD] bg-blue-900 border-black dark:border-white uppercase text-white  transition duration-200 text-sm "
           >
