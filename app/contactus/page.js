@@ -83,14 +83,14 @@ export default function ContactUs() {
               <div className="w-8 h-8 rounded-full border border-[#8b5a2b] flex items-center justify-center">
                 <Phone className="w-4 h-4" />
               </div>
-              <span>+91 86979 71531</span>
+              <span>+91 6291321220</span>
             </div>
 
             <div className="flex items-center gap-2 text-blue-900">
               <div className="w-8 h-8 rounded-full border border-[#8b5a2b] flex items-center justify-center">
                 <Mail className="w-4 h-4" />
               </div>
-              <span>marcom@hotelsonarbangla.com</span>
+              <span>connect@brillrooms.com</span>
             </div>
           </div>
         </motion.div>

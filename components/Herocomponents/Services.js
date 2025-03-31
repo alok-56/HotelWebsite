@@ -141,7 +141,7 @@ export default function AmenitiesSection() {
                   <p className="text-sm text-gray-500 mb-1">Reservations</p>
                   <div className="flex items-center gap-2">
                     <Phone className="h-4 w-4 text-blue-700" />
-                    <span className="text-lg font-medium text-gray-900">+1 (800) 123-4567</span>
+                    <span className="text-lg font-medium text-gray-900">+91 6291321220</span>
                   </div>
                 </div>
 

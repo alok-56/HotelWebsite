@@ -33,7 +33,7 @@ export default function Nav() {
     >
       <NavbarBrand className="-ml-4">
         <AcmeLogo />
-        <p className="font-bold  text-inherit">HOTEL BOOKING</p>
+        <p className="font-bold  text-inherit">BRILL ROOMS</p>
       </NavbarBrand>
 
       <div className="items-center space-x-6 hidden md:flex">

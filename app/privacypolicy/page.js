@@ -48,7 +48,7 @@ export default function PrivacyPolicy() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.6 }}
         >
-          {`At Hotel Sonar Bangla, we are committed to protecting your privacy. This Privacy Policy explains how we collect, use, and share your personal information when you visit our website or use our services.`}
+          {`At Briil Rooms, we are committed to protecting your privacy. This Privacy Policy explains how we collect, use, and share your personal information when you visit our website or use our services.`}
         </motion.p>
 
         <motion.div
@@ -112,11 +112,10 @@ export default function PrivacyPolicy() {
               {`If you have any questions or concerns regarding this Privacy Policy or your personal information, please contact us at: `}
             </p>
             <p className="text-blue-900">
-              <strong>Email:</strong> marcom@hotelsonarbangla.com
+              <strong>Email:</strong> connect@brillrooms.com
             </p>
             <p className="text-blue-900">
-              <strong>Phone:</strong> +91 86979 71531
-            </p>
+              <strong>Phone:</strong> +91 6291321220            </p>
           </motion.section>
         </motion.div>
       </motion.div>

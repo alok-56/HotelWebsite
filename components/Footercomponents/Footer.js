@@ -17,7 +17,7 @@ export default function HotelFooter() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
-            <h3 className="text-xl font-semibold text-white">Luxury Stays</h3>
+            <h3 className="text-xl font-semibold text-white">Brill Rooms</h3>
             <p className="text-sm">
               Experience unparalleled comfort and elegance at our premium hotel
               locations worldwide.
@@ -86,16 +86,40 @@ export default function HotelFooter() {
             <ul className="space-y-2">
               <li className="flex items-center space-x-2">
                 <Phone size={16} />
-                <span className="text-sm">+1 (555) 123-4567</span>
+                <span className="text-sm">+91 6291321220</span>
               </li>
               <li className="flex items-center space-x-2">
                 <Mail size={16} />
-                <span className="text-sm">reservations@luxurystays.com</span>
+                <span className="text-sm">connect@brillrooms.com</span>
               </li>
               <li className="flex items-start space-x-2">
                 <MapPin size={16} className="mt-1 flex-shrink-0" />
                 <span className="text-sm">
-                  123 Luxury Avenue, Cityville, State 12345, Country
+                  Metro Station, EC-16 near City Centre
+                </span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <MapPin size={16} className="mt-1 flex-shrink-0" />
+                <span className="text-sm">
+                  294, Noapara Rd, Chinar Park,Kolkata
+                </span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <MapPin size={16} className="mt-1 flex-shrink-0" />
+                <span className="text-sm">
+                  146, Airport Gate, Italgacha,Kolkata
+                </span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <MapPin size={16} className="mt-1 flex-shrink-0" />
+                <span className="text-sm">
+                  11J, Topsia Rd, Mirania Gardens
+                </span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <MapPin size={16} className="mt-1 flex-shrink-0" />
+                <span className="text-sm">
+                  2nd Floor, NP-222, Naya-Pati Salt lake
                 </span>
               </li>
             </ul>
@@ -123,7 +147,7 @@ export default function HotelFooter() {
         </div>
         <div className="mt-8 pt-8 border-t border-blue-800 flex flex-col sm:flex-row justify-between items-center">
           <p className="text-sm">
-            &copy; {new Date().getFullYear()} Luxury Stays. All rights reserved.
+            &copy; {new Date().getFullYear()} Brill Rooms. All rights reserved.
           </p>
           <div className="flex space-x-4 mt-4 sm:mt-0">
             <Link

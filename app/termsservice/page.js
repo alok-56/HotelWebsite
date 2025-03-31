@@ -48,7 +48,7 @@ export default function TermsOfService() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.6 }}
         >
-          {`By accessing or using the services provided by Hotel Sonar Bangla, you agree to comply with these Terms of Service. If you do not agree with these terms, please do not use our services.`}
+          {`By accessing or using the services provided by Briil Rooms, you agree to comply with these Terms of Service. If you do not agree with these terms, please do not use our services.`}
         </motion.p>
 
         <motion.div
@@ -67,7 +67,7 @@ export default function TermsOfService() {
           <motion.section variants={fadeInUp}>
             <h2 className="text-2xl font-semibold text-blue-900 mb-4">2. Services Provided</h2>
             <p className="text-blue-900">
-              {`Hotel Sonar Bangla offers a range of luxury accommodations and services to individuals, businesses, and travel agencies. These services include, but are not limited to, hotel room bookings, event planning, and customized packages.`}
+              {`Briil Rooms offers a range of luxury accommodations and services to individuals, businesses, and travel agencies. These services include, but are not limited to, hotel room bookings, event planning, and customized packages.`}
             </p>
           </motion.section>
 
@@ -102,7 +102,7 @@ export default function TermsOfService() {
           <motion.section variants={fadeInUp}>
             <h2 className="text-2xl font-semibold text-blue-900 mb-4">7. Limitation of Liability</h2>
             <p className="text-blue-900">
-              {`Hotel Sonar Bangla is not responsible for any direct, indirect, incidental, or consequential damages arising from the use of our website or services. We do not guarantee the availability, accuracy, or reliability of the services provided.`}
+              {`Briil Rooms is not responsible for any direct, indirect, incidental, or consequential damages arising from the use of our website or services. We do not guarantee the availability, accuracy, or reliability of the services provided.`}
             </p>
           </motion.section>
 
@@ -126,11 +126,10 @@ export default function TermsOfService() {
               {`If you have any questions or concerns about these Terms of Service, please contact us at:`}
             </p>
             <p className="text-blue-900">
-              <strong>Email:</strong> marcom@hotelsonarbangla.com
+              <strong>Email:</strong> connect@brillrooms.com
             </p>
             <p className="text-blue-900">
-              <strong>Phone:</strong> +91 86979 71531
-            </p>
+              <strong>Phone:</strong> +91 6291321220            </p>
           </motion.section>
         </motion.div>
       </motion.div>

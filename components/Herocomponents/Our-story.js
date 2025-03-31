@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import { useEffect, useRef, useState } from "react"
-import Image from "next/image"
-import { motion } from "framer-motion"
-import { ChevronRight, MapPin, Phone, Star, Users } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
-import Nearby1 from "@/public/Nearbydestination/Nearby1.jpg"
-import Nearby2 from "@/public/Nearbydestination/Nearby2.jpg"
-import Nearby3 from "@/public/Nearbydestination/Nearby3.jpg"
-import Nearby4 from "@/public/Nearbydestination/Nearby4.jpg"
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { ChevronRight, MapPin, Phone, Star, Users } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import Nearby1 from "@/public/Nearbydestination/Nearby1.jpg";
+import Nearby2 from "@/public/Nearbydestination/Nearby2.jpg";
+import Nearby3 from "@/public/Nearbydestination/Nearby3.jpg";
+import Nearby4 from "@/public/Nearbydestination/Nearby4.jpg";
 
 export default function LuxuryHotel() {
-  const [activeImage, setActiveImage] = useState(0)
-  const [isInView, setIsInView] = useState(false)
-  const sectionRef = useRef(null)
+  const [activeImage, setActiveImage] = useState(0);
+  const [isInView, setIsInView] = useState(false);
+  const sectionRef = useRef(null);
 
   const images = [
     {
@@ -33,39 +33,42 @@ export default function LuxuryHotel() {
       src: Nearby4,
       alt: "Recreational area with colorful amenities",
     },
-  ]
+  ];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsInView(entry.isIntersecting)
+        setIsInView(entry.isIntersecting);
       },
-      { threshold: 0.2 },
-    )
+      { threshold: 0.2 }
+    );
 
     if (sectionRef.current) {
-      observer.observe(sectionRef.current)
+      observer.observe(sectionRef.current);
     }
 
     return () => {
       if (sectionRef.current) {
-        observer.unobserve(sectionRef.current)
+        observer.unobserve(sectionRef.current);
       }
-    }
-  }, [])
+    };
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveImage((prev) => (prev === images.length - 1 ? 0 : prev + 1))
-    }, 5000)
+      setActiveImage((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+    }, 5000);
 
-    return () => clearInterval(interval)
-  }, [images.length])
+    return () => clearInterval(interval);
+  }, [images.length]);
 
   return (
     <div className="w-full bg-[#f0f5f8] min-h-screen mt-44 md:mt-0 lg:mt-0">
       <div className="max-w-7xl mx-auto px-4 py-16 md:py-24 lg:py-12">
-        <div ref={sectionRef} className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div
+          ref={sectionRef}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+        >
           {/* Image Gallery */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -79,7 +82,10 @@ export default function LuxuryHotel() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: activeImage === index ? 1 : 0 }}
                 transition={{ duration: 1, ease: "easeInOut" }}
-                className={cn("absolute inset-0 w-full h-full", activeImage === index ? "z-10" : "z-0")}
+                className={cn(
+                  "absolute inset-0 w-full h-full",
+                  activeImage === index ? "z-10" : "z-0"
+                )}
               >
                 <Image
                   src={image.src || "/placeholder.svg"}
@@ -98,7 +104,9 @@ export default function LuxuryHotel() {
                   onClick={() => setActiveImage(index)}
                   className={cn(
                     "w-2.5 h-2.5 rounded-full transition-all duration-300",
-                    activeImage === index ? "bg-white w-8" : "bg-white/50 hover:bg-white/80",
+                    activeImage === index
+                      ? "bg-white w-8"
+                      : "bg-white/50 hover:bg-white/80"
                   )}
                   aria-label={`View image ${index + 1}`}
                 />
@@ -119,7 +127,9 @@ export default function LuxuryHotel() {
                 transition={{ duration: 1, delay: 0.4 }}
                 className="h-0.5 bg-blue-400 mb-6"
               />
-              <h2 className="text-blue-900 font-light tracking-widest text-sm mb-2">DISCOVER UNPARALLELED LUXURY</h2>
+              <h2 className="text-blue-900 font-light tracking-widest text-sm mb-2">
+                DISCOVER UNPARALLELED LUXURY
+              </h2>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-gray-900 leading-tight">
                 Your Sanctuary <br />
                 <span className="text-blue-800">Awaits</span>
@@ -133,17 +143,17 @@ export default function LuxuryHotel() {
               className="space-y-6 text-gray-700"
             >
               <p className="leading-relaxed">
-               {` Nestled in a serene oasis where time slows down, Celestial Haven offers an escape from the ordinary. Our
+                {` Nestled in a serene oasis where time slows down, Celestial Haven offers an escape from the ordinary. Our
                 meticulously designed spaces blend contemporary elegance with timeless comfort, creating an atmosphere
                 where every moment becomes a cherished memory.`}
               </p>
               <p className="leading-relaxed">
-               {` From the moment you arrive, our dedicated concierge team anticipates your every need, ensuring a
+                {` From the moment you arrive, our dedicated concierge team anticipates your every need, ensuring a
                 seamless experience tailored to your preferences. Immerse yourself in our world-class amenities, from
                 the tranquil infinity pool to our award-winning spa treatments.`}
               </p>
               <p className="leading-relaxed">
-               {` Each of our suites is a private sanctuary, thoughtfully appointed with premium furnishings and
+                {` Each of our suites is a private sanctuary, thoughtfully appointed with premium furnishings and
                 breathtaking views that inspire and rejuvenate. Experience culinary excellence at our signature
                 restaurant, where local ingredients transform into extraordinary gastronomic journeys.`}
               </p>
@@ -180,7 +190,9 @@ export default function LuxuryHotel() {
                   <p className="text-sm text-gray-500 mb-1">Reservations</p>
                   <div className="flex items-center gap-2">
                     <Phone className="h-4 w-4 text-blue-700" />
-                    <span className="text-lg font-medium text-gray-900">+1 (800) 123-4567</span>
+                    <span className="text-lg font-medium text-gray-900">
+                      +91 6291321220
+                    </span>
                   </div>
                 </div>
 
@@ -194,6 +206,5 @@ export default function LuxuryHotel() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-

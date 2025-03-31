@@ -16,10 +16,8 @@ import {
 } from "@/components/ui/select";
 
 export default function HotelForm() {
-  const [formStep, setFormStep] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [captchaAnswer, setCaptchaAnswer] = useState("");
 
   const fadeInUp = {
     hidden: { opacity: 0, y: 20 },
@@ -78,7 +76,7 @@ export default function HotelForm() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.6 }}
         >
-          {` Seamlessly craft unforgettable experiences for your clients at Hotel Sonar Bangla where craft radiates
+          {` Seamlessly craft unforgettable experiences for your clients at Briil Rooms where craft radiates
           excellence and distinction.`}
         </motion.p>
 
@@ -88,7 +86,7 @@ export default function HotelForm() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.6 }}
         >
-          {`Discover the lavishness like never before only at Hotel Sonar Bangla. We invite all the travel planners to
+          {`Discover the lavishness like never before only at Briil Rooms. We invite all the travel planners to
           team up with us and make your clients' experiences extraordinary. Experience a world of comfort, style and
           luxury where every stay feels like a beautiful melody.`}
         </motion.p>
@@ -111,7 +109,7 @@ export default function HotelForm() {
           transition={{ delay: 1, duration: 0.6 }}
         >
           {` Get in touch with us now to give your clients a beautiful and memorable travel story that's all about
-          gratification at Hotel Sonar Bangla.`}
+          gratification at Briil Rooms.`}
         </motion.p>
 
         <motion.div
@@ -131,14 +129,14 @@ export default function HotelForm() {
               <div className="w-8 h-8 rounded-full border border-[#8b5a2b] flex items-center justify-center">
                 <Phone className="w-4 h-4" />
               </div>
-              <span>+91 86979 71531</span>
+              <span>+91 6291321220</span>
             </div>
 
             <div className="flex items-center gap-2 text-blue-900">
               <div className="w-8 h-8 rounded-full border border-[#8b5a2b] flex items-center justify-center">
                 <Mail className="w-4 h-4" />
               </div>
-              <span>marcom@hotelsonarbangla.com</span>
+              <span>connect@brillrooms.com</span>
             </div>
           </div>
         </motion.div>
@@ -196,7 +194,7 @@ export default function HotelForm() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.6 }}
             >
-              {` Your journey to luxury begins with a simple click. Make your stay a lavish one with Hotel Sonar Bangla's
+              {` Your journey to luxury begins with a simple click. Make your stay a lavish one with Briil Rooms's
               easy reservation process. Experience a world of comfort as you choose from our exquisite range of rooms.`}
             </motion.p>
 
@@ -346,7 +344,7 @@ export default function HotelForm() {
 
                 <motion.div>
                   <Label htmlFor="referral" className="text-blue-900">
-                    Do you know anyone from Hotel Sonar Bangla?
+                    Do you know anyone from Briil Rooms?
                   </Label>
                   <Input
                     id="referral"

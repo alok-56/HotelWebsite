@@ -48,7 +48,7 @@ export default function CookiePolicy() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.6 }}
         >
-          {`This Cookie Policy explains how Hotel Sonar Bangla ("we", "us", or "our") uses cookies and similar technologies to provide, personalize, and improve our services. By using our website, you consent to our use of cookies in accordance with this policy.`}
+          {`This Cookie Policy explains how Briil Rooms ("we", "us", or "our") uses cookies and similar technologies to provide, personalize, and improve our services. By using our website, you consent to our use of cookies in accordance with this policy.`}
         </motion.p>
 
         <motion.div
@@ -131,11 +131,10 @@ export default function CookiePolicy() {
               {`If you have any questions or concerns about our Cookie Policy, please contact us at:`}
             </p>
             <p className="text-blue-900">
-              <strong>Email:</strong> marcom@hotelsonarbangla.com
+              <strong>Email:</strong> connect@brillrooms.com
             </p>
             <p className="text-blue-900">
-              <strong>Phone:</strong> +91 86979 71531
-            </p>
+              <strong>Phone:</strong> +91 6291321220            </p>
           </motion.section>
         </motion.div>
       </motion.div>

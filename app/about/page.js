@@ -48,7 +48,7 @@ export default function AboutUs() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.6 }}
         >
-          {`Hotel Sonar Bangla has been a symbol of luxurious accommodation, exceptional service, and unforgettable experiences. Our hotel provides world-class facilities that promise an unparalleled stay for business and leisure travelers alike.`}
+          {`Briil Rooms has been a symbol of luxurious accommodation, exceptional service, and unforgettable experiences. Our hotel provides world-class facilities that promise an unparalleled stay for business and leisure travelers alike.`}
         </motion.p>
 
         <motion.p
@@ -57,7 +57,7 @@ export default function AboutUs() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.6 }}
         >
-          {`We understand the importance of comfort and elegance, and we take pride in offering the highest standards of hospitality. Our team is dedicated to creating personalized experiences for every guest, ensuring that each moment at Hotel Sonar Bangla is nothing short of extraordinary.`}
+          {`We understand the importance of comfort and elegance, and we take pride in offering the highest standards of hospitality. Our team is dedicated to creating personalized experiences for every guest, ensuring that each moment at Briil Rooms is nothing short of extraordinary.`}
         </motion.p>
 
         <motion.p
@@ -78,7 +78,7 @@ export default function AboutUs() {
             Our Vision
           </h2>
           <p className="mb-6 text-blue-900">
-            {`At Hotel Sonar Bangla, we envision being the leading hospitality provider in the region, offering the perfect blend of luxury, comfort, and service excellence. We aim to provide our guests with a home away from home, where each stay is tailored to their individual needs.`}
+            {`At Briil Rooms, we envision being the leading hospitality provider in the region, offering the perfect blend of luxury, comfort, and service excellence. We aim to provide our guests with a home away from home, where each stay is tailored to their individual needs.`}
           </p>
         </motion.div>
 
@@ -91,7 +91,7 @@ export default function AboutUs() {
             Our History
           </h2>
           <p className="mb-6 text-blue-900">
-            {`Founded over 30 years ago, Hotel Sonar Bangla started as a small boutique hotel offering a handful of rooms and personalized services. Through dedication, hard work, and an unwavering commitment to excellence, we have expanded to become a renowned name in the hospitality industry.`}
+            {`Founded over 30 years ago, Briil Rooms started as a small boutique hotel offering a handful of rooms and personalized services. Through dedication, hard work, and an unwavering commitment to excellence, we have expanded to become a renowned name in the hospitality industry.`}
           </p>
         </motion.div>
       </motion.div>
