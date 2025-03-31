@@ -100,7 +100,7 @@ export default function BookingSearch({ className }) {
                   </div>
                 </div>
               </PopoverTrigger>
-              <PopoverContent className="w-full p-0" align="start">
+              <PopoverContent className="w-full p-0" align="center">
                 <div className="p-4 flex justify-center items-center mx-auto flex-col">
                   <div className="mb-2 text-sm font-medium text-gray-800">
                     Popular Hotels
@@ -225,14 +225,14 @@ export default function BookingSearch({ className }) {
               onOpenChange={(open) => setOpenPopover(open ? "guests" : null)}
             >
               <PopoverTrigger asChild>
-                <div className="flex cursor-pointer items-center p-4 hover:bg-gray-50">
-                  <div className="flex-1 flex-col justify-center">
+                <div className="flex cursor-pointer w-full items-center p-4 hover:bg-gray-50">
+                  <div className="flex-1 flex-col justify-center items-center">
                     <div className="text-sm font-medium text-gray-800">
                       Rooms/Guests
                     </div>
-                    <div className="flex items-start gap-2 pt-1">
-                      <Users className="h-4 w-4 text-blue-900" />
-                      <span className="text-sm text-gray-600">
+                    <div className="flex lg:items-start items-center w-full  gap-2 pt-1">
+                      <Users className="h-4 w-4 text-blue-900 hidden lg:block" />
+                      <span className="text-sm text-gray-600 w-full ">
                         {`${guests.rooms} Room(s), ${guests.adults} Adult(s), ${guests.children} Children`}
                       </span>
                     </div>

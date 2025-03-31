@@ -10,6 +10,7 @@ import {
 import { ChevronDown } from "lucide-react";
 import { Avatar } from "@heroui/react";
 import Profileavatar from "./Profile";
+import Mobilenav from "./Sidenav";
 
 export const AcmeLogo = () => {
   return (
@@ -93,7 +94,8 @@ export default function Nav() {
         </Link>
       </div>
 
-      {/* <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026024d" /> */}
+      {/* <Avatar className="hidden lg:block" src="https://i.pravatar.cc/150?u=a042581f4e29026024d" /> */}
+      <Mobilenav/>
     </Navbar>
   );
 }
