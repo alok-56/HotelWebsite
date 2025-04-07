@@ -11,7 +11,6 @@ export default function PremiumHotelProfile() {
       <header className="bg-blue-900 text-white p-6 rounded-b-3xl shadow-lg">
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-2xl font-semibold">My Profile</h1>
-          <Settings className="w-6 h-6" />
         </div>
         <div className="flex items-center gap-4">
           <Avatar className="w-16 h-16 border-2 border-yellow-400">
@@ -24,7 +23,6 @@ export default function PremiumHotelProfile() {
               <Badge variant="secondary" className="bg-yellow-400 text-blue-900">
                 Gold Member
               </Badge>
-              <span className="ml-2 text-sm">12,350 points</span>
             </div>
           </div>
         </div>
@@ -33,7 +31,7 @@ export default function PremiumHotelProfile() {
       {/* Main Content */}
       <main className="p-6 space-y-6">
         {/* Upcoming Reservation */}
-        <Card className="bg-white shadow-md">
+        {/* <Card className="bg-white shadow-md">
           <CardContent className="p-4">
             <h3 className="text-lg font-semibold mb-2 flex items-center">
               <Calendar className="w-5 h-5 mr-2 text-blue-600" />
@@ -50,7 +48,7 @@ export default function PremiumHotelProfile() {
               </Button>
             </div>
           </CardContent>
-        </Card>
+        </Card> */}
 
         {/* Saved Hotels */}
         <div>
@@ -76,7 +74,7 @@ export default function PremiumHotelProfile() {
         </div>
 
         {/* Booking Preferences */}
-        <Card className="bg-white shadow-md">
+        {/* <Card className="bg-white shadow-md">
           <CardContent className="p-4">
             <h3 className="text-lg font-semibold mb-2 flex items-center">
               <Coffee className="w-5 h-5 mr-2 text-blue-600" />
@@ -91,15 +89,15 @@ export default function PremiumHotelProfile() {
               ))}
             </div>
           </CardContent>
-        </Card>
+        </Card> */}
 
         {/* Account Actions */}
-        <div className="space-y-2">
+        {/* <div className="space-y-2">
           <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">View All Reservations</Button>
           <Button variant="outline" className="w-full border-blue-600 text-blue-600 hover:bg-blue-50">
             Edit Profile
           </Button>
-        </div>
+        </div> */}
       </main>
     </div>
   )

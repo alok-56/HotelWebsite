@@ -98,8 +98,8 @@ export default function BookingScreen() {
         <Tabs defaultValue="all" className="w-full">
           <TabsList className="grid w-full grid-cols-3 mb-4">
             <TabsTrigger value="all">All</TabsTrigger>
-            <TabsTrigger value="upcoming">Upcoming</TabsTrigger>
-            <TabsTrigger value="completed">Completed</TabsTrigger>
+            {/* <TabsTrigger value="upcoming">Upcoming</TabsTrigger>
+            <TabsTrigger value="completed">Completed</TabsTrigger> */}
           </TabsList>
           <TabsContent value="all">
             {bookings.map((booking, index) => (

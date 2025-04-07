@@ -14,33 +14,29 @@ import Nearby3 from "@/public/Nearbydestination/Nearby3.jpg"
 import Nearby4 from "@/public/Nearbydestination/Nearby4.jpg"
 const destinations = [
   {
-    name: "Kamshet",
+    name: "Victoria Memorial",
     properties: 3,
-    image:Nearby1,
+    image: Nearby1,
   },
   {
-    name: "Pawna Lake",
+    name: "Howrah Bridge",
     properties: 23,
-    image:Nearby1,
-
+    image: Nearby1,
   },
   {
-    name: "Lavasa",
+    name: "Indian Museum",
     properties: 2,
-       image:Nearby2,
-
+    image: Nearby2,
   },
   {
-    name: "Lonavala",
+    name: "Belur Math",
     properties: 7,
-       image:Nearby3,
-
+    image: Nearby3,
   },
   {
-    name: "Khopoli",
+    name: "Eco Park",
     properties: 1,
-       image:Nearby4,
-
+    image: Nearby4,
   },
 ];
 
@@ -64,7 +60,7 @@ export default function DestinationsCarousel() {
                 key={index}
                 className="pl-2 md:pl-4 basis-1/3 md:basis-1/2 lg:basis-1/4"
               >
-                <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
+                <div className="relative md:aspect-[4/3] aspect-square overflow-hidden rounded-lg">
                   <Image
                     src={destination.image || "/placeholder.svg"}
                     alt={destination.name}
@@ -72,11 +68,11 @@ export default function DestinationsCarousel() {
                     className="object-cover transition-transform hover:scale-105 duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60" />
-                  <div className="absolute bottom-0 left-0 p-4 text-white">
-                    <h3 className="text-2xl font-semibold mb-1">
+                  <div className="absolute bottom-0 left-0 md:p-4 p-1 overflow-hidden text-white">
+                    <h3 className="md:text-2xl text-xs font-semibold mb-1">
                       {destination.name}
                     </h3>
-                    <p className="text-sm text-gray-200">
+                    <p className="md:text-sm text-xs text-gray-200">
                       {destination.properties}{" "}
                       {destination.properties === 1 ? "Property" : "Properties"}
                     </p>
