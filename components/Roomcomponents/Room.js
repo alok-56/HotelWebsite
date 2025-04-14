@@ -8,8 +8,10 @@ import Room2 from "@/public/hotelraj/rooms/room2.jpg";
 import Room3 from "@/public/hotelraj/rooms/room3.jpg";
 import Room4 from "@/public/hotelraj/rooms/room4.jpg";
 import Room5 from "@/public/hotelraj/rooms/room5.jpg";
+import { useRouter } from "next/navigation";
 
 export function Room() {
+  const router=useRouter()
   const [isLiked, setIsLiked] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -174,8 +176,8 @@ export function Room() {
           </div>
 
           {/* Book Now Button */}
-          <div className="mt-6 flex justify-center md:justify-start">
-            <button className="px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300">
+          <div onClick={()=>router.push("/book")} className="mt-6 flex justify-center md:justify-start">
+            <button className="px-6 py-2 bg-blue-900 text-white rounded-full hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300">
               Book Now
             </button>
           </div>

@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import PropertyFeatures from "./PropertyFeatures";
 import { useRouter } from "next/navigation";
 
-const PropertyDescription = ({ name, description, price }) => {
+const PropertyDescription = ({ name, description, price,id }) => {
   const router=useRouter()
   return (
     <section className="py-12">
@@ -26,8 +26,8 @@ const PropertyDescription = ({ name, description, price }) => {
               <p className="text-3xl font-display font-medium text-luxury-800">{price}<span className="text-sm text-muted-foreground font-normal"> / night</span></p>
             </div>
             <div className="flex flex-col space-y-3">
-              <Button onClick={()=>router.push('/overview/1')} className="w-full bg-blue-900 hover:bg-blue-800">Book Now</Button>
-              <Button onClick={()=>router.push('/overview/1')}  variant="outline" className="w-full">Check Availability</Button>
+              {/* <Button onClick={()=>router.push(`/overview/${id}`)} className="w-full bg-blue-900 hover:bg-blue-800">Book Now</Button> */}
+              <Button onClick={()=>router.push(`/overview/${id}`)}   className="w-full text-white bg-blue-900 hover:bg-blue-800">Check Availability</Button>
             </div>
           </div>
         </div>

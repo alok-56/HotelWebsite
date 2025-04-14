@@ -13,6 +13,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 export default function BookingPage() {
   const [timeLeft, setTimeLeft] = useState("00:18:56");
@@ -20,7 +21,7 @@ export default function BookingPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Progress Bar */}
-      <div className="border-b bg-white">
+      {/* <div className="border-b bg-white">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between max-w-4xl mx-auto">
             <div className="flex items-center flex-1">
@@ -55,7 +56,7 @@ export default function BookingPage() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="container mx-auto px-4 py-8">
         <div className="grid gap-8 max-w-6xl mx-auto lg:grid-cols-2">
@@ -95,8 +96,6 @@ export default function BookingPage() {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="india">India</SelectItem>
-                      <SelectItem value="usa">United States</SelectItem>
-                      <SelectItem value="uk">United Kingdom</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -183,6 +182,9 @@ export default function BookingPage() {
                 </div>
               </CardContent>
             </Card>
+            <Button className="w-full bg-blue-900 hover:bg-blue-800">
+              Procced To Pay
+            </Button>
           </div>
         </div>
       </div>

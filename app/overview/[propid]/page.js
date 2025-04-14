@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ArrowLeft,
   Star,
@@ -33,6 +33,10 @@ import Hotel3 from "@/public/hotelraj/hotelImage/hotel3.jpg";
 import Hotel4 from "@/public/hotelraj/hotelImage/hotel4.jpg";
 import Hotel5 from "@/public/hotelraj/hotelImage/hotel5.jpg";
 import { Room } from "@/components/Roomcomponents/Room";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "next/navigation";
+import { fetchhotelbyid } from "@/lib/Redux/hotelSlice";
+import Loadingoverlay from "@/components/Propertycomponents/Loadingoverlay";
 
 const property = {
   id: "lux-001",
@@ -80,16 +84,27 @@ export default function PropertyOverview() {
   const [checkInDate, setCheckInDate] = useState();
   const [checkOutDate, setCheckOutDate] = useState();
   const [guests, setGuests] = useState(2);
+ const params=useParams()
+  const {propid}=params
+  const { hotel, singleloading } = useSelector((state) => state.hotel);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchhotelbyid(propid));
+  }, [dispatch]);
+
+
 
   return (
-    <div className="bg-slate-50 text-slate-900 min-h-screen pb-16 md:pb-0">
+    <>
+   {singleloading ?<Loadingoverlay/>: <div className="bg-slate-50 text-slate-900 min-h-screen pb-16 md:pb-0">
       {/* Image Gallery */}
       <ImageGallery images={galleryImages} />
 
       <div className="max-w-7xl mx-auto px-4 py-8 md:px-6 lg:px-8">
         <div className="md:flex md:justify-between md:items-start">
           <div className="md:w-2/3">
-            <h1 className="text-3xl font-bold mb-2">{property.name}</h1>
+            <h1 className="text-3xl font-bold mb-2">{hotel?.Heading}</h1>
             <p className="text-muted-foreground flex items-center mb-4">
               <MapPin className="w-4 h-4 mr-1" />
               {property.location}
@@ -189,7 +204,7 @@ export default function PropertyOverview() {
                   </div>
                 </PopoverContent>
               </Popover>
-              <Button className="w-full">Reserve</Button>
+              <Button className="w-full bg-blue-900 hover:bg-blue-800">Search Room</Button>
             </div>
           </div>
         </div>
@@ -340,6 +355,8 @@ export default function PropertyOverview() {
           </TabsContent>
         </Tabs>
       </div>
-    </div>
+    </div>}
+
+    </>
   );
 }

@@ -31,11 +31,31 @@ import Looby2 from "@/public/hotelraj/Looby/Looby2.jpg";
 import Reception1 from "@/public/hotelraj/reception/reception1.jpg";
 import Reception2 from "@/public/hotelraj/reception/reception2.jpg";
 import Reception3 from "@/public/hotelraj/reception/reception3.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchallhotels ,fetchhotelbyid} from "@/lib/Redux/hotelSlice";
+import { useParams } from "next/navigation";
+import Loadingoverlay from "@/components/Propertycomponents/Loadingoverlay";
 
 const Property = () => {
+  const params=useParams()
+  const {prop}=params
+  const { hotel, singleloading } = useSelector((state) => state.hotel);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchhotelbyid(prop));
+  }, [dispatch]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+console.log(hotel)
+
+// if (singleloading){
+//   return <Loadingoverlay/>
+// }
+
 
   // Property data
   const propertyName = "Hotel raj Palace";
@@ -69,20 +89,20 @@ const Property = () => {
 
   return (
     <div className="min-h-screen flex flex-col w-full">
-      <main className="flex-grow ">
+    {singleloading ?<Loadingoverlay/>:  <main className="flex-grow ">
         <div className="w-full mx-auto  mb-12">
-          <PropertyGallery images={galleryImages} propertyName={propertyName} />
+          <PropertyGallery images={galleryImages} propertyName={hotel?.Heading} />
         </div>
 
         <PropertyDescription
-          name={propertyName}
-          description={propertyDescription}
+          name={hotel?.Heading}
+          description={hotel?.Description}
           price={propertyPrice}
+          id={prop}
         />
 
         <AmenitiesSection />
 
-        {/* Room Gallery Section */}
         <section className="py-16 w-11/12 mx-auto">
           <h2 className="section-heading text-xl font-semibold">
             Explore Our Rooms
@@ -169,32 +189,7 @@ const Property = () => {
             ))}
           </div>
         </section>
-
-        {/* Map or Location Section */}
-        {/* <section className="py-16 bg-blue-100 w-full mx-auto mt-20">
-          <div className="w-11/12 mx-auto">
-            <div className="text-center mb-10">
-              <h2 className="text-2xl font-semibold">Location</h2>
-              <p className="section-subheading mx-auto">
-                Perfectly situated for both relaxation and exploration.
-              </p>
-            </div>
-
-            <div className="h-[400px] bg-white rounded-xl shadow-sm overflow-hidden">
-             
-              <iframe
-                src="https://maps.app.goo.gl/vFxttM9nmoyfdfTD7"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                title="Map Location"
-              ></iframe>
-            </div>
-          </div>
-        </section> */}
-      </main>
+      </main>}
     </div>
   );
 };
