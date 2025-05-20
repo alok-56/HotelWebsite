@@ -23,7 +23,7 @@ const PropertyDescription = ({ name, description, price,id }) => {
           <div className="bg-white p-6 rounded-xl shadow-sm border w-full lg:w-72 mt-6 lg:mt-0">
             <div className="mb-4">
               <p className="text-sm text-muted-foreground">Starting from</p>
-              <p className="text-3xl font-display font-medium text-luxury-800">{price}<span className="text-sm text-muted-foreground font-normal"> / night</span></p>
+              <p className="text-3xl font-display font-medium text-luxury-800">999<span className="text-sm text-muted-foreground font-normal"> / night</span></p>
             </div>
             <div className="flex flex-col space-y-3">
               {/* <Button onClick={()=>router.push(`/overview/${id}`)} className="w-full bg-blue-900 hover:bg-blue-800">Book Now</Button> */}

@@ -96,6 +96,8 @@ export default function PropertyOverview() {
   const { hotel, singleloading } = useSelector((state) => state.hotel);
   const dispatch = useDispatch();
 
+  console.log(rooms);
+
   useEffect(() => {
     dispatch(fetchhotelbyid(propid));
   }, [dispatch]);
@@ -105,22 +107,20 @@ export default function PropertyOverview() {
     dispatch(setGuests({ [type]: value }));
   };
 
-const handleSearch = () => {
-  if (!checkIn || !checkOut || !hotelId || !propid) return;
+  const handleSearch = () => {
+    if (!checkIn || !checkOut || !hotelId || !propid) return;
 
-  const formattedCheckin = new Date(checkIn).toISOString();
-  const formattedCheckout = new Date(checkOut).toISOString();
+    const formattedCheckin = new Date(checkIn).toISOString();
+    const formattedCheckout = new Date(checkOut).toISOString();
 
-  dispatch(
-    fetchSearchedRooms({
-      branchid:hotelId || propid,
-      checkindate: formattedCheckin,
-      checkoutdate: formattedCheckout,
-    })
-  );
-};
-
-
+    dispatch(
+      fetchSearchedRooms({
+        branchid: hotelId || propid,
+        checkindate: formattedCheckin,
+        checkoutdate: formattedCheckout,
+      })
+    );
+  };
 
   return (
     <>
@@ -136,19 +136,12 @@ const handleSearch = () => {
               <div className="md:w-2/3">
                 <h1 className="text-3xl font-bold mb-2">{hotel?.Heading}</h1>
                 <p className="text-muted-foreground flex items-center mb-4">
-                  <MapPin className="w-4 h-4 mr-1" />
-                  {hotel?.location}
+                  {hotel?.Description}
                 </p>
-                <div className="flex items-center space-x-4 mb-6">
-                  <Badge variant="secondary" className="text-lg px-3 py-1">
-                    <Star className="w-4 h-4 mr-1 inline" />
-                    {hotel?.rating}
-                  </Badge>
-                  <span className="text-lg font-semibold">
-                    ${hotel?.price}{" "}
-                    <span className="text-sm font-normal">/ night</span>
-                  </span>
-                </div>
+                <p className="text-muted-foreground flex items-center mb-4">
+                  <MapPin className="w-4 h-4 mr-1" />
+                  {hotel?.Location}
+                </p>
               </div>
               <div className="md:w-1/3 md:bg-white md:p-6 md:rounded-lg md:shadow-md">
                 <div className="space-y-4">
@@ -347,8 +340,15 @@ const handleSearch = () => {
                       </PopoverContent>
                     </Popover>
                   </div>
-                  <Button onClick={handleSearch} className="w-full bg-blue-900 hover:bg-blue-800">
-                    {loading?<span className="loader2"></span>:"Search Room"}
+                  <Button
+                    onClick={handleSearch}
+                    className="w-full bg-blue-900 hover:bg-blue-800"
+                  >
+                    {loading ? (
+                      <span className="loader2"></span>
+                    ) : (
+                      "Search Room"
+                    )}
                   </Button>
                 </div>
               </div>
@@ -360,10 +360,9 @@ const handleSearch = () => {
                   All Rooms
                 </h2>
                 <div className="grid grid-cols-1 gap-4 md:gap-12">
-                {rooms.map((room,index)=>(
-                  <Room data={room} key={index} />
-                ))  }
-                
+                  {rooms.map((room, index) => (
+                    <Room data={room} key={index} />
+                  ))}
                 </div>
               </div>
             </div>
@@ -372,8 +371,9 @@ const handleSearch = () => {
               <TabsList>
                 <TabsTrigger value="overview">Overview</TabsTrigger>
                 <TabsTrigger value="amenities">Amenities</TabsTrigger>
-
                 <TabsTrigger value="reviews">Reviews</TabsTrigger>
+                <TabsTrigger value="policy">Guest Policies</TabsTrigger>
+                <TabsTrigger value="cancellation">Cancellation Policies</TabsTrigger>
               </TabsList>
               <TabsContent value="overview">
                 <Card>
@@ -423,24 +423,6 @@ const handleSearch = () => {
                   </CardContent>
                 </Card>
               </TabsContent>
-              <TabsContent value="location">
-                <Card>
-                  <CardContent className="p-6">
-                    <h2 className="text-xl font-semibold mb-4">Location</h2>
-                    <div className="aspect-video w-full mb-4">
-                      <img
-                        src={`https://maps.googleapis.com/maps/api/staticmap?center=${property.coordinates.lat},${property.coordinates.lng}&zoom=13&size=600x300&maptype=roadmap&markers=color:red%7C${property.coordinates.lat},${property.coordinates.lng}&key=YOUR_GOOGLE_MAPS_API_KEY`}
-                        alt="Property location"
-                        className="w-full h-full object-cover rounded-lg"
-                      />
-                    </div>
-                    <p className="text-muted-foreground">
-                      Located in {property.location}, this property offers easy
-                      access to local attractions and amenities.
-                    </p>
-                  </CardContent>
-                </Card>
-              </TabsContent>
               <TabsContent value="reviews">
                 <Card>
                   <CardContent className="p-6">
@@ -479,25 +461,154 @@ const handleSearch = () => {
                   </CardContent>
                 </Card>
               </TabsContent>
-              <TabsContent value="photos">
+              <TabsContent value="policy">
                 <Card>
-                  <CardContent className="p-6">
-                    <h2 className="text-xl font-semibold mb-4">
-                      Property Photos
+                  <CardContent className="p-6 space-y-6">
+                    <h2 className="text-xl font-semibold">Guest Policies</h2>
+
+                    <div className="text-muted-foreground space-y-4">
+                      <div>
+                        <h3 className="font-semibold">
+                          General Booking Policy:
+                        </h3>
+                        <ul className="list-disc list-inside space-y-1">
+                          <li>
+                            Different destinations may have specific travel
+                            guidelines. Please follow applicable laws.
+                          </li>
+                          <li>
+                            Policies are booking specific and informed at
+                            booking or check-in.
+                          </li>
+                          <li>
+                            Brill Rooms refers to its affiliates, employees, and
+                            officers. "Hotel" means the booked hotel/home via
+                            Brill Rooms.
+                          </li>
+                          <li>
+                            For new bookings, Brill Rooms’ 24×7 support is
+                            available at 0124-4208080.
+                          </li>
+                          <li>
+                            To cancel/change reservations, contact 93139 31393
+                            or write to{" "}
+                            <a
+                              className="text-blue-600 underline"
+                              href="mailto:escalations@brillrooms.com"
+                            >
+                              escalations@brillrooms.com
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div>
+                        <h3 className="font-semibold">Check-in Policy:</h3>
+                        <ul className="list-disc list-inside space-y-1">
+                          <li>Primary guest must be at least 18 years old.</li>
+                          <li>
+                            Standard check-in time is 12 PM. Check-in allowed
+                            anytime after, as long as the booking is valid.
+                          </li>
+                          <li>
+                            All guests must show valid government photo ID
+                            (Aadhar, DL, Voter ID, Passport). PAN cards not
+                            accepted.
+                          </li>
+                          <li>
+                            If facing check-in issues, Brill Rooms will:
+                            <ul className="ml-4 list-disc">
+                              <li>
+                                Try to accommodate you in the same or an
+                                alternate Brill Rooms property.
+                              </li>
+                              <li>
+                                Offer full refund if no accommodation is
+                                possible.
+                              </li>
+                              <li>Not be liable beyond the booking amount.</li>
+                            </ul>
+                          </li>
+                          <li>
+                            No refund in case of natural disasters, terrorism,
+                            or government restrictions.
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div>
+                        <h3 className="font-semibold">Early Check-in:</h3>
+                        <ul className="list-disc list-inside space-y-1">
+                          <li>
+                            Standard check-in time is 12 PM (unless stated
+                            otherwise).
+                          </li>
+                          <li>
+                            Early check-in is subject to availability. Charges
+                            may apply:
+                            <ul className="ml-4 list-disc">
+                              <li>Before 6 AM: 100% of one-day charges.</li>
+                              <li>
+                                6 AM–10 AM: 0–30% charges (varies by hotel).
+                              </li>
+                              <li>10 AM–12 PM: Complimentary.</li>
+                            </ul>
+                          </li>
+                          <li>
+                            No complimentary breakfast on early check-in day.
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div>
+                        <h3 className="font-semibold">Late Check-out:</h3>
+                        <ul className="list-disc list-inside space-y-1">
+                          <li>
+                            Standard check-out time is 11 AM (unless stated
+                            otherwise).
+                          </li>
+                          <li>
+                            Late check-out is subject to availability and may
+                            incur extra charges.
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+              <TabsContent value="cancellation">
+                <Card>
+                  <CardContent className="p-6 space-y-6">
+                    <h2 className="text-xl font-semibold">
+                      Cancellation Policy
                     </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                      {property.images.map((image, index) => (
-                        <div
-                          key={index}
-                          className="aspect-video rounded-lg overflow-hidden"
-                        >
-                          <img
-                            src={image || "/placeholder.svg"}
-                            alt={`Property image ${index + 1}`}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                      ))}
+
+                    <div className="text-muted-foreground">
+                      <ul className="list-disc list-inside space-y-2">
+                        <li>
+                          To cancel or modify a booking made via the Brill Rooms
+                          app, website, or call center, contact support.
+                        </li>
+                        <li>Customer Care: 93139 31393</li>
+                        <li>
+                          Email:{" "}
+                          <a
+                            className="text-blue-600 underline"
+                            href="mailto:escalations@brillrooms.com"
+                          >
+                            escalations@brillrooms.com
+                          </a>
+                        </li>
+                        <li>
+                          Refunds depend on the specific booking policy and
+                          applicable cancellation window.
+                        </li>
+                        <li>
+                          Some rate plans may be non-refundable or only
+                          partially refundable.
+                        </li>
+                      </ul>
                     </div>
                   </CardContent>
                 </Card>

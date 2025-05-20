@@ -32,13 +32,13 @@ import Reception1 from "@/public/hotelraj/reception/reception1.jpg";
 import Reception2 from "@/public/hotelraj/reception/reception2.jpg";
 import Reception3 from "@/public/hotelraj/reception/reception3.jpg";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchallhotels ,fetchhotelbyid} from "@/lib/Redux/hotelSlice";
+import { fetchallhotels, fetchhotelbyid } from "@/lib/Redux/hotelSlice";
 import { useParams } from "next/navigation";
 import Loadingoverlay from "@/components/Propertycomponents/Loadingoverlay";
 
 const Property = () => {
-  const params=useParams()
-  const {prop}=params
+  const params = useParams();
+  const { prop } = params;
   const { hotel, singleloading } = useSelector((state) => state.hotel);
   const dispatch = useDispatch();
 
@@ -50,12 +50,11 @@ const Property = () => {
     window.scrollTo(0, 0);
   }, []);
 
-console.log(hotel)
 
-// if (singleloading){
-//   return <Loadingoverlay/>
-// }
 
+  // if (singleloading){
+  //   return <Loadingoverlay/>
+  // }
 
   // Property data
   const propertyName = "Hotel raj Palace";
@@ -89,98 +88,105 @@ console.log(hotel)
 
   return (
     <div className="min-h-screen flex flex-col w-full">
-    {singleloading ?<Loadingoverlay/>:  <main className="flex-grow ">
-        <div className="w-full mx-auto  mb-12">
-          <PropertyGallery images={hotel?.Image} propertyName={hotel?.Heading} />
-        </div>
-
-        <PropertyDescription
-          name={hotel?.Heading}
-          description={hotel?.Description}
-          price={hotel?.price}
-          id={prop}
-        />
-
-        <AmenitiesSection />
-
-        <section className="py-16 w-11/12 mx-auto">
-          <h2 className="section-heading text-xl font-semibold">
-            Explore Our Rooms
-          </h2>
-          <p className="section-subheading text-muted-foreground">
-            Discover our premium accommodations designed for your comfort and
-            luxury.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-5">
-            {hotel?.Image?.rooms.map((room, index) => (
-              <div
-                key={index}
-                className="rounded-xl overflow-hidden shadow-sm border bg-white"
-              >
-                <div className="image-hover h-64">
-                  <img
-                    src={room}
-                    alt={`Luxury room ${room}`}
-                    width={0}
-                    height={0}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-            ))}
+      {singleloading ? (
+        <Loadingoverlay />
+      ) : (
+        <main className="flex-grow ">
+          <div className="w-full mx-auto  mb-12">
+            <PropertyGallery
+              images={hotel?.Image}
+              propertyName={hotel?.Heading}
+            />
           </div>
-        </section>
 
-        <section className="w-11/12 mx-auto pb-10">
-          <h2 className="section-heading text-xl font-semibold">
-            Explore Our Restaurant
-          </h2>
-          <p className="section-subheading text-muted-foreground">
-            Discover our premium accommodations designed for your comfort and
-            luxury.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-5">
-            {hotel?.Image?.restaurant.map((room, index) => (
-              <div
-                key={index}
-                className="rounded-xl overflow-hidden shadow-sm border bg-white"
-              >
-                <div className="image-hover h-64">
-                  <img
-                    src={room}
-                    alt={`Luxury room ${room}`}
-                    height={0}
-                    width={0}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
+          <PropertyDescription
+            name={hotel?.Heading}
+            description={hotel?.Description}
+            price={hotel?.price}
+            id={prop}
+          />
 
-        <section className="w-11/12 mx-auto pb-10">
-          <h2 className="section-heading text-xl font-semibold">
-            Explore Other Area
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-5">
-            {hotel?.Image?.other.map((room, index) => (
-              <div
-                key={index}
-                className="rounded-xl overflow-hidden shadow-sm border bg-white"
-              >
-                <div className="image-hover h-64">
-                  <img
-                    src={room}
-                    alt={`Luxury room ${room}`}
-                    className="w-full h-full object-cover"
-                  />
+          <AmenitiesSection />
+
+          <section className="py-16 w-11/12 mx-auto">
+            <h2 className="section-heading text-xl font-semibold">
+              Explore Our Rooms
+            </h2>
+            <p className="section-subheading text-muted-foreground">
+              Discover our premium accommodations designed for your comfort and
+              luxury.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-5">
+              {hotel?.Image?.rooms.map((room, index) => (
+                <div
+                  key={index}
+                  className="rounded-xl overflow-hidden shadow-sm border bg-white"
+                >
+                  <div className="image-hover h-64">
+                    <img
+                      src={room}
+                      alt={`Luxury room ${room}`}
+                      width={0}
+                      height={0}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      </main>}
+              ))}
+            </div>
+          </section>
+
+          <section className="w-11/12 mx-auto pb-10">
+            <h2 className="section-heading text-xl font-semibold">
+              Explore Our Restaurant
+            </h2>
+            <p className="section-subheading text-muted-foreground">
+              Discover our premium accommodations designed for your comfort and
+              luxury.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-5">
+              {hotel?.Image?.restaurant.map((room, index) => (
+                <div
+                  key={index}
+                  className="rounded-xl overflow-hidden shadow-sm border bg-white"
+                >
+                  <div className="image-hover h-64">
+                    <img
+                      src={room}
+                      alt={`Luxury room ${room}`}
+                      height={0}
+                      width={0}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="w-11/12 mx-auto pb-10">
+            <h2 className="section-heading text-xl font-semibold">
+              Explore Other Area
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-5">
+              {hotel?.Image?.other.map((room, index) => (
+                <div
+                  key={index}
+                  className="rounded-xl overflow-hidden shadow-sm border bg-white"
+                >
+                  <div className="image-hover h-64">
+                    <img
+                      src={room}
+                      alt={`Luxury room ${room}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        </main>
+      )}
     </div>
   );
 };

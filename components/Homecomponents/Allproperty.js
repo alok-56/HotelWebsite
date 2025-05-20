@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { PropertyCard } from "@/components/Homecomponents/property-card";
 
 import brills from "@/public/Brills/HotelImage/Hotel5.jpg";
@@ -26,17 +26,28 @@ import hotelake4 from "@/public/Hotel_lake/HotelImage/Hotel4.jpg";
 import Nearby1 from "@/public/Nearbydestination/Nearby1.jpg";
 import Nearby2 from "@/public/Nearbydestination/Nearby2.jpg";
 import Nearby3 from "@/public/Nearbydestination/Nearby3.jpg";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchallhotels } from "@/lib/Redux/hotelSlice";
+
 import HotelSkeletonGrid from "./Hotelskeleton";
+import { GetAllhotels } from "@/lib/API/Hotel";
 
 const Allproperty = () => {
-  const { Hotels, loading } = useSelector((state) => state.hotel);
-  const dispatch = useDispatch();
-
+  const [loading, setLoading] = useState(false);
+  const [Hotels, setHotels] = useState([]);
   useEffect(() => {
-    dispatch(fetchallhotels());
-  }, [dispatch]);
+    FetchHotels();
+  }, []);
+
+  const FetchHotels = async () => {
+    setLoading(true);
+    try {
+      let res = await GetAllhotels();
+      console.log("alok", res.data[0]);
+      setHotels(res.data);
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-50/50 md:px-4 py-8 pb-20 md:pb-10">
@@ -48,7 +59,7 @@ const Allproperty = () => {
           <HotelSkeletonGrid />
         ) : Hotels?.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-12">
-            {Hotels.map((hotel, index) => (
+            {Hotels?.map((hotel, index) => (
               <PropertyCard
                 id={hotel?._id}
                 key={hotel._id || index}
@@ -61,9 +72,9 @@ const Allproperty = () => {
                 priceSubtext={hotel?.priceSubtext || ""}
                 propertyType={hotel?.propertyType || ""}
                 images={
-                  Array.isArray(hotel?.images)
-                    ? hotel?.images
-                    : [Nearby1, Nearby2, Nearby3] // fallback images
+                  Array.isArray(hotel?.Image?.hotel)
+                    ? hotel?.Image?.hotel
+                    : [Nearby1, Nearby2, Nearby3]
                 }
                 includedMeals={hotel?.includedMeals || "Breakfast Included"}
                 amenities={hotel?.amenities || []}

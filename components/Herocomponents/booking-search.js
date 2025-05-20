@@ -122,7 +122,7 @@ export default function BookingSearch({ className }) {
                     Popular Hotels
                   </div>
                   <div className="max-h-[300px] w-60 overflow-y-auto flex justify-center items-center mx-auto flex-col ">
-                    {Hotels.map((hotel, index) => (
+                    {Hotels?.map((hotel, index) => (
                       <div
                         key={index}
                         className="cursor-pointer rounded-md p-2 hover:bg-blue-50"

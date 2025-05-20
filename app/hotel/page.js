@@ -45,7 +45,7 @@ const Hotels = () => {
           <HotelSkeletonGrid />
         ) : Hotels?.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-12">
-            {Hotels.map((hotel, index) => (
+            {Hotels?.map((hotel, index) => (
               <PropertyCard
                 key={hotel._id || index}
                 id={hotel?._id}
@@ -58,8 +58,8 @@ const Hotels = () => {
                 priceSubtext={hotel?.priceSubtext || ""}
                 propertyType={hotel?.propertyType || ""}
                 images={
-                  Array.isArray(hotel?.images)
-                    ? hotel?.images
+                  Array.isArray(hotel?.Image?.hotel)
+                    ? hotel?.Image?.hotel
                     : [Nearby1, Nearby2, Nearby3] // fallback images
                 }
                 includedMeals={hotel?.includedMeals || "Breakfast Included"}

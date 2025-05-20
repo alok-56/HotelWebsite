@@ -108,7 +108,7 @@ export default function Mobilenav() {
               </div>
             }
           />
-          <Tab
+          {/* <Tab
             key="Profile"
             href="/profile"
             title={
@@ -117,7 +117,7 @@ export default function Mobilenav() {
                 <span className="text-tiny">Profile</span>
               </div>
             }
-          />
+          /> */}
         </Tabs>
       </div>
     </>
