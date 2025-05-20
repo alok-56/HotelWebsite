@@ -96,7 +96,6 @@ export default function PropertyOverview() {
   const { hotel, singleloading } = useSelector((state) => state.hotel);
   const dispatch = useDispatch();
 
-  console.log(rooms);
 
   useEffect(() => {
     dispatch(fetchhotelbyid(propid));
@@ -108,14 +107,14 @@ export default function PropertyOverview() {
   };
 
   const handleSearch = () => {
-    if (!checkIn || !checkOut || !hotelId || !propid) return;
+    if (!checkIn || !checkOut || !propid) return;
 
     const formattedCheckin = new Date(checkIn).toISOString();
     const formattedCheckout = new Date(checkOut).toISOString();
 
     dispatch(
       fetchSearchedRooms({
-        branchid: hotelId || propid,
+        branchid:propid,
         checkindate: formattedCheckin,
         checkoutdate: formattedCheckout,
       })

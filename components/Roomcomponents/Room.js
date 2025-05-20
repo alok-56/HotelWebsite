@@ -8,19 +8,21 @@ import Room2 from "@/public/hotelraj/rooms/room2.jpg";
 import Room3 from "@/public/hotelraj/rooms/room3.jpg";
 import Room4 from "@/public/hotelraj/rooms/room4.jpg";
 import Room5 from "@/public/hotelraj/rooms/room5.jpg";
-import { useRouter } from "next/navigation";
-import { useSelector,useDispatch } from "react-redux";
+import { useParams, useRouter } from "next/navigation";
+import { useSelector, useDispatch } from "react-redux";
 import { Setselectedroomid } from "@/lib/Redux/searchroomslice";
 
-export function Room({data}) {
-  const dispatch=useDispatch()
-  const router=useRouter()
+export function Room({ data }) {
+  const dispatch = useDispatch();
+  const router = useRouter();
   const [isLiked, setIsLiked] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = [Room1, Room2, Room3, Room4, Room5];
- const {selectedRoom } = useSelector(
-    (state) => state.searchroom
-  );
+  
+
+  const params = useParams();
+  const { propid } = params;
+
   const title = "Mountain View Villa near Panshet";
   const location = "Bhagatwadi, Pune";
   const price = 8999;
@@ -40,7 +42,6 @@ export function Room({data}) {
   return (
     <Card className="group relative overflow-hidden rounded-xl border-0 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-300 hover:shadow-[0_8px_40px_rgb(0,0,0,0.16)]">
       <div className="flex flex-col md:flex-row relative">
-        
         {/* Image Section */}
         <div className="relative aspect-[5/3] w-full md:w-1/2 overflow-hidden">
           <Image
@@ -180,7 +181,13 @@ export function Room({data}) {
           </div>
 
           {/* Book Now Button */}
-          <div onClick={()=>{router.push("/book"),dispatch(Setselectedroomid(data?._id))}} className="mt-6 flex justify-center md:justify-start">
+          <div
+            onClick={() => {
+              router.push(`/book/${propid}`),
+                dispatch(Setselectedroomid(data?._id));
+            }}
+            className="mt-6 flex justify-center md:justify-start"
+          >
             <button className="px-6 py-2 bg-blue-900 text-white rounded-full hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300">
               Book Now
             </button>

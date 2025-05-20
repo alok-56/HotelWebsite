@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronRight, Star, Luggage, Clock, Bed } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -14,9 +14,65 @@ import {
 } from "@/components/ui/select";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { useParams } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchhotelbyid } from "@/lib/Redux/hotelSlice";
+import { bookRoom } from "@/lib/Redux/searchroomslice";
 
 export default function BookingPage() {
   const [timeLeft, setTimeLeft] = useState("00:18:56");
+
+  const params = useParams();
+  const { propid } = params;
+  const { hotel, singleloading } = useSelector((state) => state.hotel);
+  const dispatch = useDispatch();
+  const { selectedRoom } = useSelector((state) => state.searchroom);
+  const { checkIn, checkOut, guests } = useSelector((state) => state.booking);
+  const [name, setName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [age, setAge] = useState("");
+  const [numberOfChildren, setNumberOfChildren] = useState(0);
+
+  useEffect(() => {
+    dispatch(fetchhotelbyid(propid));
+  }, [dispatch]);
+
+  const tax = 100;
+  const totalAmount = 5000;
+  const cancelFee = 500;
+
+  const bookingData = {
+    roomId: selectedRoom,
+    hotelId: propid,
+    checkIn: checkIn,
+    checkOut: checkOut,
+      UserInformation: {
+      Name: name,
+      Phonenumber: phoneNumber,
+      Age: age,
+    },
+    Numberofchildren: numberOfChildren,
+    Tax: tax,
+    TotalAmount: totalAmount,
+    Cancelfee: cancelFee,
+  };
+
+  const handleBooking = () => {
+    dispatch(bookRoom(bookingData))
+      .then((response) => {
+        if (response.error) {
+          // Handle error (show an alert or notification)
+          console.log("Booking failed:", response.error.message);
+        } else {
+          // Handle success (show confirmation, redirect, etc.)
+          console.log("Booking successful:", response.payload);
+        }
+      })
+      .catch((error) => {
+        // Handle unexpected errors
+        console.log("Error booking room:", error);
+      });
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -67,14 +123,25 @@ export default function BookingPage() {
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-4">
+                 <div>
+                <Label htmlFor="firstName">First name *</Label>
+                <Input
+                  id="firstName"
+                  className="mt-1"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
                 <div>
-                  <Label htmlFor="firstName">First name *</Label>
-                  <Input id="firstName" className="mt-1" />
-                </div>
-                <div>
-                  <Label htmlFor="lastName">Last name *</Label>
-                  <Input id="lastName" className="mt-1" />
-                </div>
+                <Label htmlFor="phone">Phone number *</Label>
+                <Input
+                  id="phone"
+                  type="tel"
+                  className="mt-1"
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                />
+              </div>
                 <div>
                   <Label htmlFor="email">Email *</Label>
                   <Input id="email" type="email" className="mt-1" />
@@ -84,10 +151,7 @@ export default function BookingPage() {
                     your booking
                   </p>
                 </div>
-                <div>
-                  <Label htmlFor="phone">Phone number *</Label>
-                  <Input id="phone" type="tel" className="mt-1" />
-                </div>
+               
                 <div>
                   <Label htmlFor="country">Country/region of residence *</Label>
                   <Select>
@@ -128,8 +192,8 @@ export default function BookingPage() {
             <Card>
               <CardContent className="p-6">
                 <div className="flex gap-4">
-                  <Image
-                    src=""
+                  <img
+                    src={hotel?.Image?.hotel[0]}
                     alt="Hotel room"
                     width={120}
                     height={120}
@@ -137,7 +201,7 @@ export default function BookingPage() {
                   />
                   <div className="flex-1">
                     <h3 className="text-xl font-semibold">
-                      Hotel O Britania Chowk
+                     {hotel?.Heading}
                     </h3>
                     <div className="flex items-center gap-1 my-1">
                       {[...Array(4)].map((_, i) => (
@@ -148,11 +212,9 @@ export default function BookingPage() {
                       ))}
                     </div>
                     <div className="text-sm text-gray-600">
-                      North Delhi, New Delhi and NCR, India
+                     {hotel?.Location}
                     </div>
-                    <div className="text-primary font-medium mt-1">
-                      What's nearby?
-                    </div>
+                   
                   </div>
                 </div>
 
@@ -182,7 +244,7 @@ export default function BookingPage() {
                 </div>
               </CardContent>
             </Card>
-            <Button className="w-full bg-blue-900 hover:bg-blue-800">
+            <Button onClick={handleBooking} className="w-full bg-blue-900 hover:bg-blue-800">
               Procced To Pay
             </Button>
           </div>
