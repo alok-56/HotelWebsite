@@ -6,5 +6,8 @@ const nextConfig = {
   env: {
     BASE_PATH: basePath,
   },
+    images: {
+    domains: ['res.cloudinary.com'],
+  },
 };
 export default nextConfig;

@@ -12,20 +12,37 @@ import {
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { fetchallhotels } from "@/lib/Redux/hotelSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setDestination,
+  setCheckIn,
+  setCheckOut,
+  setGuests,
+} from "@/lib/Redux/bookingSlice";
 
 export default function BookingSearch({ className }) {
-  const [scrolled, setScrolled] = useState(false);
-  const [destination, setDestination] = useState("");
-  const [checkIn, setCheckIn] = useState(null);
-  const [checkOut, setCheckOut] = useState(null);
-  const [guests, setGuests] = useState({
-    rooms: 1,
-    adults: 1,
-    children: 0,
-  });
-  const [openPopover, setOpenPopover] = useState(null);
+  const { destination, hotelId, checkIn, checkOut, guests } = useSelector(
+    (state) => state.booking
+  );
 
-  const router=useRouter()
+  console.log(destination,hotelId,checkIn,checkOut,guests)
+
+  const [scrolled, setScrolled] = useState(false);
+  // const [destination, setDestination] = useState("");
+  const [hotelid, sethotelid] = useState("");
+  // const [checkIn, setCheckIn] = useState(null);
+  // const [checkOut, setCheckOut] = useState(null);
+  // const [guests, setGuests] = useState({
+  //   rooms: 1,
+  //   adults: 1,
+  //   children: 0,
+  // });
+  const [openPopover, setOpenPopover] = useState(null);
+  const { Hotels, loading } = useSelector((state) => state.hotel);
+  const dispatch = useDispatch();
+
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,13 +60,12 @@ export default function BookingSearch({ className }) {
 
   const handleGuestChange = (type, value) => {
     if (value < 0) return;
-    setGuests((prev) => ({ ...prev, [type]: value }));
+    dispatch(setGuests({ [type]: value }));
   };
 
   const handleSearch = () => {
-    router.push(`/properties/2`)
-
-
+  if (!checkIn || !checkOut || !hotelId) return;
+    router.push(`/overview/${hotelId}`);
   };
 
   const popularDestinations = [
@@ -106,17 +122,22 @@ export default function BookingSearch({ className }) {
                     Popular Hotels
                   </div>
                   <div className="max-h-[300px] w-60 overflow-y-auto flex justify-center items-center mx-auto flex-col ">
-                    {popularDestinations.map((city) => (
+                    {Hotels.map((hotel, index) => (
                       <div
-                        key={city}
+                        key={index}
                         className="cursor-pointer rounded-md p-2 hover:bg-blue-50"
                         onClick={() => {
-                          setDestination(city);
+                          dispatch(
+                            setDestination({
+                              destination: hotel?.Heading,
+                              hotelId: hotel?._id,
+                            })
+                          );
                           setOpenPopover(null);
                         }}
                       >
                         <div className="flex items-center gap-2">
-                          <span className="text-sm">{city}</span>
+                          <span className="text-sm">{hotel?.Heading}</span>
                         </div>
                       </div>
                     ))}
@@ -154,7 +175,7 @@ export default function BookingSearch({ className }) {
                   mode="single"
                   selected={checkIn || undefined}
                   onSelect={(date) => {
-                    setCheckIn(date);
+                    dispatch(setCheckIn(date));
                     setOpenPopover(null);
                     // If check-out is before check-in, reset it
                     if (checkOut && date && date > checkOut) {
@@ -204,7 +225,7 @@ export default function BookingSearch({ className }) {
                   mode="single"
                   selected={checkOut || undefined}
                   onSelect={(date) => {
-                    setCheckOut(date);
+                    dispatch(setCheckOut(date));
                     setOpenPopover(null);
                   }}
                   initialFocus

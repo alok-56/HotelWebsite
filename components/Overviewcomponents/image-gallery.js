@@ -9,18 +9,18 @@ export function ImageGallery({ images }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const nextImage = () =>
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images?.hotel.length);
   const prevImage = () =>
     setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + images.length) % images.length
+      (prevIndex) => (prevIndex - 1 + images?.hotel.length) % images?.hotel.length
     );
 
   return (
     <>
       <div className="relative h-72 md:h-96 overflow-hidden rounded-lg">
-        <Image
+        <img
           key={currentIndex}
-          src={images[currentIndex]}
+          src={images?.hotel[currentIndex]}
           alt={`Property image ${currentIndex + 1}`}
           className="w-full h-full object-cover cursor-pointer"
           onClick={() => setIsModalOpen(true)}
@@ -31,7 +31,7 @@ export function ImageGallery({ images }) {
         />
         <div className="absolute bottom-4 left-4 right-4 flex justify-center">
           <div className="flex space-x-2 bg-black/50 backdrop-blur-sm rounded-full p-2">
-            {images.map((_, index) => (
+            {images?.hotel.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
@@ -76,9 +76,9 @@ export function ImageGallery({ images }) {
             >
               <ChevronRight className="h-6 w-6" />
             </Button>
-            <Image
+            <img
               key={currentIndex}
-              src={images[currentIndex]}
+              src={images?.hotel[currentIndex]}
               alt={`Property image ${currentIndex + 1}`}
               className="max-w-full max-h-full object-contain"
               initial={{ scale: 0.8, opacity: 0 }}

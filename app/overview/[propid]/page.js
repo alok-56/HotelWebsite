@@ -79,13 +79,20 @@ const amenityIcons = {
   Gym: Dumbbell,
   "Room Service": Coffee,
 };
+import { setCheckIn, setCheckOut, setGuests } from "@/lib/Redux/bookingSlice";
+import { fetchSearchedRooms } from "@/lib/Redux/searchroomslice";
 
 export default function PropertyOverview() {
-  const [checkInDate, setCheckInDate] = useState();
-  const [checkOutDate, setCheckOutDate] = useState();
-  const [guests, setGuests] = useState(2);
- const params=useParams()
-  const {propid}=params
+  const { destination, hotelId, checkIn, checkOut, guests } = useSelector(
+    (state) => state.booking
+  );
+  const { rooms, selectedRoom, bookingResponse, loading } = useSelector(
+    (state) => state.searchroom
+  );
+  const [openPopover, setOpenPopover] = useState(null);
+
+  const params = useParams();
+  const { propid } = params;
   const { hotel, singleloading } = useSelector((state) => state.hotel);
   const dispatch = useDispatch();
 
@@ -93,270 +100,412 @@ export default function PropertyOverview() {
     dispatch(fetchhotelbyid(propid));
   }, [dispatch]);
 
+  const handleGuestChange = (type, value) => {
+    if (value < 0) return;
+    dispatch(setGuests({ [type]: value }));
+  };
+
+const handleSearch = () => {
+  if (!checkIn || !checkOut || !hotelId || !propid) return;
+
+  const formattedCheckin = new Date(checkIn).toISOString();
+  const formattedCheckout = new Date(checkOut).toISOString();
+
+  dispatch(
+    fetchSearchedRooms({
+      branchid:hotelId || propid,
+      checkindate: formattedCheckin,
+      checkoutdate: formattedCheckout,
+    })
+  );
+};
+
 
 
   return (
     <>
-   {singleloading ?<Loadingoverlay/>: <div className="bg-slate-50 text-slate-900 min-h-screen pb-16 md:pb-0">
-      {/* Image Gallery */}
-      <ImageGallery images={galleryImages} />
+      {singleloading ? (
+        <Loadingoverlay />
+      ) : (
+        <div className="bg-slate-50 text-slate-900 min-h-screen pb-16 md:pb-0">
+          {/* Image Gallery */}
+          <ImageGallery images={hotel?.Image} />
 
-      <div className="max-w-7xl mx-auto px-4 py-8 md:px-6 lg:px-8">
-        <div className="md:flex md:justify-between md:items-start">
-          <div className="md:w-2/3">
-            <h1 className="text-3xl font-bold mb-2">{hotel?.Heading}</h1>
-            <p className="text-muted-foreground flex items-center mb-4">
-              <MapPin className="w-4 h-4 mr-1" />
-              {property.location}
-            </p>
-            <div className="flex items-center space-x-4 mb-6">
-              <Badge variant="secondary" className="text-lg px-3 py-1">
-                <Star className="w-4 h-4 mr-1 inline" />
-                {property.rating}
-              </Badge>
-              <span className="text-lg font-semibold">
-                ${property.price}{" "}
-                <span className="text-sm font-normal">/ night</span>
-              </span>
-            </div>
-          </div>
-          <div className="md:w-1/3 md:bg-white md:p-6 md:rounded-lg md:shadow-md">
-            <div className="space-y-4">
-              <div className="flex space-x-2">
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button
-                      variant="outline"
-                      className="w-full justify-start text-left font-normal"
-                    >
-                      <Calendar className="mr-2 h-4 w-4" />
-                      {checkInDate ? (
-                        checkInDate.toDateString()
-                      ) : (
-                        <span>Check-in</span>
-                      )}
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0">
-                    <CalendarComponent
-                      mode="single"
-                      selected={checkInDate}
-                      onSelect={setCheckInDate}
-                      initialFocus
-                    />
-                  </PopoverContent>
-                </Popover>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button
-                      variant="outline"
-                      className="w-full justify-start text-left font-normal"
-                    >
-                      <Calendar className="mr-2 h-4 w-4" />
-                      {checkOutDate ? (
-                        checkOutDate.toDateString()
-                      ) : (
-                        <span>Check-out</span>
-                      )}
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0">
-                    <CalendarComponent
-                      mode="single"
-                      selected={checkOutDate}
-                      onSelect={setCheckOutDate}
-                      initialFocus
-                    />
-                  </PopoverContent>
-                </Popover>
+          <div className="max-w-7xl mx-auto px-4 py-8 md:px-6 lg:px-8">
+            <div className="md:flex md:justify-between md:items-start">
+              <div className="md:w-2/3">
+                <h1 className="text-3xl font-bold mb-2">{hotel?.Heading}</h1>
+                <p className="text-muted-foreground flex items-center mb-4">
+                  <MapPin className="w-4 h-4 mr-1" />
+                  {hotel?.location}
+                </p>
+                <div className="flex items-center space-x-4 mb-6">
+                  <Badge variant="secondary" className="text-lg px-3 py-1">
+                    <Star className="w-4 h-4 mr-1 inline" />
+                    {hotel?.rating}
+                  </Badge>
+                  <span className="text-lg font-semibold">
+                    ${hotel?.price}{" "}
+                    <span className="text-sm font-normal">/ night</span>
+                  </span>
+                </div>
               </div>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button
-                    variant="outline"
-                    className="w-full justify-start text-left font-normal"
-                  >
-                    <Users className="mr-2 h-4 w-4" />
-                    {guests} {guests === 1 ? "guest" : "guests"}
-                    <ChevronDown className="ml-auto h-4 w-4 opacity-50" />
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-80">
-                  <div className="flex items-center justify-between">
-                    <span>Guests</span>
-                    <div className="flex items-center space-x-2">
-                      <Button
-                        variant="outline"
-                        size="icon"
-                        onClick={() => setGuests(Math.max(1, guests - 1))}
-                      >
-                        -
-                      </Button>
-                      <span>{guests}</span>
-                      <Button
-                        variant="outline"
-                        size="icon"
-                        onClick={() => setGuests(guests + 1)}
-                      >
-                        +
-                      </Button>
-                    </div>
-                  </div>
-                </PopoverContent>
-              </Popover>
-              <Button className="w-full bg-blue-900 hover:bg-blue-800">Search Room</Button>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-gray-50/50 mt-10">
-          <div className="w-full px-4 mx-auto">
-            <h2 className="md:text-4xl font-semibold text-gray-800 mb-8">
-              All Rooms
-            </h2>
-            <div className="grid grid-cols-1 gap-4 md:gap-12">
-              <Room />
-              <Room />
-              <Room />
-            </div>
-          </div>
-        </div>
-
-        <Tabs defaultValue="overview" className="mt-8">
-          <TabsList>
-            <TabsTrigger value="overview">Overview</TabsTrigger>
-            <TabsTrigger value="amenities">Amenities</TabsTrigger>
-            
-            <TabsTrigger value="reviews">Reviews</TabsTrigger>
-          
-          </TabsList>
-          <TabsContent value="overview">
-            <Card>
-              <CardContent className="p-6">
-                <h2 className="text-xl font-semibold mb-4">
-                  About this property
-                </h2>
-                <p className="text-muted-foreground mb-6">
-                  {property.description}
-                </p>
-                <h3 className="text-lg font-semibold mb-3">Highlights</h3>
-                <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-6">
-                  {property.highlights.map((highlight, index) => (
-                    <li key={index} className="flex items-center">
-                      <Plus className="w-5 h-5 mr-2 text-green-500" />
-                      {highlight}
-                    </li>
-                  ))}
-                </ul>
-                <h3 className="text-lg font-semibold mb-3">House rules</h3>
-                <ul className="space-y-2">
-                  {property.houseRules.map((rule, index) => (
-                    <li key={index} className="flex items-center">
-                      <div className="w-2 h-2 bg-indigo-600 rounded-full mr-2" />
-                      {rule}
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-          </TabsContent>
-          <TabsContent value="amenities">
-            <Card>
-              <CardContent className="p-6">
-                <h2 className="text-xl font-semibold mb-4">Amenities</h2>
-                <ul className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  {property.amenities.map((amenity, index) => {
-                    const Icon = amenityIcons[amenity] || Plus;
-                    return (
-                      <li key={index} className="flex items-center">
-                        <Icon className="w-5 h-5 mr-2 text-indigo-600" />
-                        {amenity}
-                      </li>
-                    );
-                  })}
-                </ul>
-              </CardContent>
-            </Card>
-          </TabsContent>
-          <TabsContent value="location">
-            <Card>
-              <CardContent className="p-6">
-                <h2 className="text-xl font-semibold mb-4">Location</h2>
-                <div className="aspect-video w-full mb-4">
-                  <img
-                    src={`https://maps.googleapis.com/maps/api/staticmap?center=${property.coordinates.lat},${property.coordinates.lng}&zoom=13&size=600x300&maptype=roadmap&markers=color:red%7C${property.coordinates.lat},${property.coordinates.lng}&key=YOUR_GOOGLE_MAPS_API_KEY`}
-                    alt="Property location"
-                    className="w-full h-full object-cover rounded-lg"
-                  />
-                </div>
-                <p className="text-muted-foreground">
-                  Located in {property.location}, this property offers easy
-                  access to local attractions and amenities.
-                </p>
-              </CardContent>
-            </Card>
-          </TabsContent>
-          <TabsContent value="reviews">
-            <Card>
-              <CardContent className="p-6">
-                <h2 className="text-xl font-semibold mb-4">Guest Reviews</h2>
-                <div className="space-y-6">
-                  {[1, 2, 3].map((_, index) => (
-                    <div key={index} className="flex items-start space-x-4">
-                      <Avatar>
-                        <AvatarImage
-                          src={`/placeholder.svg?height=40&width=40&text=Guest${
-                            index + 1
-                          }`}
+              <div className="md:w-1/3 md:bg-white md:p-6 md:rounded-lg md:shadow-md">
+                <div className="space-y-4">
+                  <div className="flex space-x-2">
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <Button
+                          variant="outline"
+                          className="w-full justify-start text-left font-normal"
+                        >
+                          <Calendar className="mr-2 h-4 w-4" />
+                          {checkIn ? (
+                            checkIn.toDateString()
+                          ) : (
+                            <span>{checkIn}</span>
+                          )}
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0">
+                        <CalendarComponent
+                          mode="single"
+                          selected={checkIn}
+                          onSelect={(date) => dispatch(setCheckIn(date))}
+                          initialFocus
                         />
-                        <AvatarFallback>G{index + 1}</AvatarFallback>
-                      </Avatar>
-                      <div>
-                        <div className="flex items-center mb-1">
-                          <h3 className="font-semibold mr-2">
-                            Guest {index + 1}
-                          </h3>
-                          <Badge variant="secondary">
-                            <Star className="w-3 h-3 mr-1 inline" />
-                            5.0
-                          </Badge>
-                        </div>
-                        <p className="text-muted-foreground">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Phasellus ac diam at quam congue feugiat.
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-          <TabsContent value="photos">
-            <Card>
-              <CardContent className="p-6">
-                <h2 className="text-xl font-semibold mb-4">Property Photos</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {property.images.map((image, index) => (
-                    <div
-                      key={index}
-                      className="aspect-video rounded-lg overflow-hidden"
+                      </PopoverContent>
+                    </Popover>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <Button
+                          variant="outline"
+                          className="w-full justify-start text-left font-normal"
+                        >
+                          <Calendar className="mr-2 h-4 w-4" />
+                          {checkOut ? (
+                            checkOut.toDateString()
+                          ) : (
+                            <span>{checkOut}</span>
+                          )}
+                        </Button>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0">
+                        <CalendarComponent
+                          mode="single"
+                          selected={checkOut}
+                          onSelect={(date) => dispatch(setCheckOut(date))}
+                          initialFocus
+                        />
+                      </PopoverContent>
+                    </Popover>
+                  </div>
+                  <div className="relative border-b md:border-b-0 md:border-r">
+                    <Popover
+                      open={openPopover === "guests"}
+                      onOpenChange={(open) =>
+                        setOpenPopover(open ? "guests" : null)
+                      }
                     >
+                      <PopoverTrigger asChild>
+                        <div className="flex cursor-pointer w-full items-center p-4 hover:bg-gray-50">
+                          <div className="flex-1 flex-col justify-center items-center">
+                            <div className="text-sm font-medium text-gray-800">
+                              Rooms/Guests
+                            </div>
+                            <div className="flex lg:items-start items-center w-full  gap-2 pt-1">
+                              <Users className="h-4 w-4 text-blue-900 hidden lg:block" />
+                              <span className="text-sm text-gray-600 w-full ">
+                                {`${guests.rooms} Room(s), ${guests.adults} Adult(s), ${guests.children} Children`}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-[260px] p-0" align="center">
+                        <div className="p-4">
+                          <div className="mb-4 text-sm font-medium text-gray-800">
+                            Select Rooms & Guests
+                          </div>
+
+                          {/* Rooms */}
+                          <div className="mb-3 flex items-center justify-between">
+                            <span className="text-sm text-gray-700">Rooms</span>
+                            <div className="flex items-center gap-3">
+                              <Button
+                                variant="outline"
+                                size="icon"
+                                className="h-7 w-7 rounded-full p-0"
+                                onClick={() =>
+                                  handleGuestChange(
+                                    "rooms",
+                                    Math.max(1, guests.rooms - 1)
+                                  )
+                                }
+                                disabled={guests.rooms <= 1}
+                              >
+                                -
+                              </Button>
+                              <span className="w-4 text-center text-sm">
+                                {guests.rooms}
+                              </span>
+                              <Button
+                                variant="outline"
+                                size="icon"
+                                className="h-7 w-7 rounded-full p-0"
+                                onClick={() =>
+                                  handleGuestChange("rooms", guests.rooms + 1)
+                                }
+                              >
+                                +
+                              </Button>
+                            </div>
+                          </div>
+
+                          {/* Adults */}
+                          <div className="mb-3 flex items-center justify-between">
+                            <span className="text-sm text-gray-700">
+                              Adults
+                            </span>
+                            <div className="flex items-center gap-3">
+                              <Button
+                                variant="outline"
+                                size="icon"
+                                className="h-7 w-7 rounded-full p-0"
+                                onClick={() =>
+                                  handleGuestChange(
+                                    "adults",
+                                    Math.max(1, guests.adults - 1)
+                                  )
+                                }
+                                disabled={guests.adults <= 1}
+                              >
+                                -
+                              </Button>
+                              <span className="w-4 text-center text-sm">
+                                {guests.adults}
+                              </span>
+                              <Button
+                                variant="outline"
+                                size="icon"
+                                className="h-7 w-7 rounded-full p-0"
+                                onClick={() =>
+                                  handleGuestChange("adults", guests.adults + 1)
+                                }
+                              >
+                                +
+                              </Button>
+                            </div>
+                          </div>
+
+                          {/* Children */}
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm text-gray-700">
+                              Children
+                            </span>
+                            <div className="flex items-center gap-3">
+                              <Button
+                                variant="outline"
+                                size="icon"
+                                className="h-7 w-7 rounded-full p-0"
+                                onClick={() =>
+                                  handleGuestChange(
+                                    "children",
+                                    Math.max(0, guests.children - 1)
+                                  )
+                                }
+                                disabled={guests.children <= 0}
+                              >
+                                -
+                              </Button>
+                              <span className="w-4 text-center text-sm">
+                                {guests.children}
+                              </span>
+                              <Button
+                                variant="outline"
+                                size="icon"
+                                className="h-7 w-7 rounded-full p-0"
+                                onClick={() =>
+                                  handleGuestChange(
+                                    "children",
+                                    guests.children + 1
+                                  )
+                                }
+                              >
+                                +
+                              </Button>
+                            </div>
+                          </div>
+
+                          <Button
+                            className="mt-4 w-full bg-blue-900 text-white hover:bg-blue-800"
+                            onClick={() => setOpenPopover(null)}
+                          >
+                            Apply
+                          </Button>
+                        </div>
+                      </PopoverContent>
+                    </Popover>
+                  </div>
+                  <Button onClick={handleSearch} className="w-full bg-blue-900 hover:bg-blue-800">
+                    {loading?<span className="loader2"></span>:"Search Room"}
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gray-50/50 mt-10">
+              <div className="w-full px-4 mx-auto">
+                <h2 className="md:text-4xl font-semibold text-gray-800 mb-8">
+                  All Rooms
+                </h2>
+                <div className="grid grid-cols-1 gap-4 md:gap-12">
+                {rooms.map((room,index)=>(
+                  <Room data={room} key={index} />
+                ))  }
+                
+                </div>
+              </div>
+            </div>
+
+            <Tabs defaultValue="overview" className="mt-8">
+              <TabsList>
+                <TabsTrigger value="overview">Overview</TabsTrigger>
+                <TabsTrigger value="amenities">Amenities</TabsTrigger>
+
+                <TabsTrigger value="reviews">Reviews</TabsTrigger>
+              </TabsList>
+              <TabsContent value="overview">
+                <Card>
+                  <CardContent className="p-6">
+                    <h2 className="text-xl font-semibold mb-4">
+                      About this property
+                    </h2>
+                    <p className="text-muted-foreground mb-6">
+                      {property.description}
+                    </p>
+                    <h3 className="text-lg font-semibold mb-3">Highlights</h3>
+                    <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-6">
+                      {property.highlights.map((highlight, index) => (
+                        <li key={index} className="flex items-center">
+                          <Plus className="w-5 h-5 mr-2 text-green-500" />
+                          {highlight}
+                        </li>
+                      ))}
+                    </ul>
+                    <h3 className="text-lg font-semibold mb-3">House rules</h3>
+                    <ul className="space-y-2">
+                      {property.houseRules.map((rule, index) => (
+                        <li key={index} className="flex items-center">
+                          <div className="w-2 h-2 bg-indigo-600 rounded-full mr-2" />
+                          {rule}
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+              <TabsContent value="amenities">
+                <Card>
+                  <CardContent className="p-6">
+                    <h2 className="text-xl font-semibold mb-4">Amenities</h2>
+                    <ul className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                      {property.amenities.map((amenity, index) => {
+                        const Icon = amenityIcons[amenity] || Plus;
+                        return (
+                          <li key={index} className="flex items-center">
+                            <Icon className="w-5 h-5 mr-2 text-indigo-600" />
+                            {amenity}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+              <TabsContent value="location">
+                <Card>
+                  <CardContent className="p-6">
+                    <h2 className="text-xl font-semibold mb-4">Location</h2>
+                    <div className="aspect-video w-full mb-4">
                       <img
-                        src={image || "/placeholder.svg"}
-                        alt={`Property image ${index + 1}`}
-                        className="w-full h-full object-cover"
+                        src={`https://maps.googleapis.com/maps/api/staticmap?center=${property.coordinates.lat},${property.coordinates.lng}&zoom=13&size=600x300&maptype=roadmap&markers=color:red%7C${property.coordinates.lat},${property.coordinates.lng}&key=YOUR_GOOGLE_MAPS_API_KEY`}
+                        alt="Property location"
+                        className="w-full h-full object-cover rounded-lg"
                       />
                     </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-        </Tabs>
-      </div>
-    </div>}
-
+                    <p className="text-muted-foreground">
+                      Located in {property.location}, this property offers easy
+                      access to local attractions and amenities.
+                    </p>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+              <TabsContent value="reviews">
+                <Card>
+                  <CardContent className="p-6">
+                    <h2 className="text-xl font-semibold mb-4">
+                      Guest Reviews
+                    </h2>
+                    <div className="space-y-6">
+                      {[1, 2, 3].map((_, index) => (
+                        <div key={index} className="flex items-start space-x-4">
+                          <Avatar>
+                            <AvatarImage
+                              src={`/placeholder.svg?height=40&width=40&text=Guest${
+                                index + 1
+                              }`}
+                            />
+                            <AvatarFallback>G{index + 1}</AvatarFallback>
+                          </Avatar>
+                          <div>
+                            <div className="flex items-center mb-1">
+                              <h3 className="font-semibold mr-2">
+                                Guest {index + 1}
+                              </h3>
+                              <Badge variant="secondary">
+                                <Star className="w-3 h-3 mr-1 inline" />
+                                5.0
+                              </Badge>
+                            </div>
+                            <p className="text-muted-foreground">
+                              Lorem ipsum dolor sit amet, consectetur adipiscing
+                              elit. Phasellus ac diam at quam congue feugiat.
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+              <TabsContent value="photos">
+                <Card>
+                  <CardContent className="p-6">
+                    <h2 className="text-xl font-semibold mb-4">
+                      Property Photos
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {property.images.map((image, index) => (
+                        <div
+                          key={index}
+                          className="aspect-video rounded-lg overflow-hidden"
+                        >
+                          <img
+                            src={image || "/placeholder.svg"}
+                            alt={`Property image ${index + 1}`}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+            </Tabs>
+          </div>
+        </div>
+      )}
     </>
   );
 }

@@ -6,15 +6,15 @@ import Image from "next/image";
 
 const PropertyGallery = ({ images, propertyName }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-
+  
   const goToPrevious = () => {
     const isFirstImage = currentIndex === 0;
-    const newIndex = isFirstImage ? images.length - 1 : currentIndex - 1;
+    const newIndex = isFirstImage ? images?.hotel.length - 1 : currentIndex - 1;
     setCurrentIndex(newIndex);
   };
 
   const goToNext = () => {
-    const isLastImage = currentIndex === images.length - 1;
+    const isLastImage = currentIndex === images?.hotel.length - 1;
     const newIndex = isLastImage ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
   };
@@ -27,9 +27,21 @@ const PropertyGallery = ({ images, propertyName }) => {
     <div className="w-full h-[500px] md:h-[70vh] relative rounded-xl overflow-hidden">
       {/* Main large image */}
       <div className="w-full h-full relative overflow-hidden">
-        <Image
-          src={images[currentIndex].src}
-          alt={images[currentIndex].alt}
+       {/* {images?.hotel.map((img,index)=>(
+         <img
+         key={index}
+          src={img}
+          alt={img}
+          className="w-full h-full object-cover transition-transform duration-500"
+        />
+        
+
+       ))
+        } */}
+
+         <img
+          src={images?.hotel[currentIndex]}
+          alt={images?.hotel[currentIndex]}
           className="w-full h-full object-cover transition-transform duration-500"
         />
         
@@ -39,7 +51,7 @@ const PropertyGallery = ({ images, propertyName }) => {
         {/* Property name overlay */}
         <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
           <div className="animate-fade-in">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-medium text-white mb-2">{propertyName}</h1>
+            <h1 className="text-xl md:text-2xl lg:text-3xl font-display font-medium text-white mb-8">{propertyName}</h1>
           </div>
         </div>
       </div>
@@ -63,7 +75,7 @@ const PropertyGallery = ({ images, propertyName }) => {
       
       {/* Thumbnails */}
       <div className="absolute bottom-0 left-0 right-0 p-4 hidden md:flex justify-center space-x-2">
-        {images.map((image, index) => (
+        {images?.hotel?.map((image, index) => (
           <button
             key={index}
             onClick={() => goToImage(index)}
@@ -72,8 +84,8 @@ const PropertyGallery = ({ images, propertyName }) => {
             }`}
             aria-label={`View image ${index + 1}`}
           >
-            <Image 
-              src={image.src} 
+            <img 
+              src={image} 
               alt={`Thumbnail ${index + 1}`} 
               className="w-full h-full object-cover"
             />

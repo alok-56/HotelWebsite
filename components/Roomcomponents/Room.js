@@ -9,14 +9,18 @@ import Room3 from "@/public/hotelraj/rooms/room3.jpg";
 import Room4 from "@/public/hotelraj/rooms/room4.jpg";
 import Room5 from "@/public/hotelraj/rooms/room5.jpg";
 import { useRouter } from "next/navigation";
+import { useSelector,useDispatch } from "react-redux";
+import { Setselectedroomid } from "@/lib/Redux/searchroomslice";
 
-export function Room() {
+export function Room({data}) {
+  const dispatch=useDispatch()
   const router=useRouter()
   const [isLiked, setIsLiked] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
   const images = [Room1, Room2, Room3, Room4, Room5];
-
+ const {selectedRoom } = useSelector(
+    (state) => state.searchroom
+  );
   const title = "Mountain View Villa near Panshet";
   const location = "Bhagatwadi, Pune";
   const price = 8999;
@@ -125,7 +129,7 @@ export function Room() {
           <div className="flex items-start justify-between gap-4">
             <div>
               <h3 className="font-semibold md:text-xl text-gray-900 leading-tight">
-                {title}
+                {data?.RoomName}
               </h3>
               <p className="mt-1 text-sm font-medium text-gray-500">
                 {location}
@@ -149,7 +153,7 @@ export function Room() {
             <div>
               <div className="flex items-baseline gap-1.5">
                 <span className="text-2xl font-bold text-gray-900">
-                  ₹{price.toLocaleString()}
+                  ₹{data?.Price.toLocaleString()}
                 </span>
                 {originalPrice && (
                   <span className="text-sm text-gray-400 line-through">
@@ -176,7 +180,7 @@ export function Room() {
           </div>
 
           {/* Book Now Button */}
-          <div onClick={()=>router.push("/book")} className="mt-6 flex justify-center md:justify-start">
+          <div onClick={()=>{router.push("/book"),dispatch(Setselectedroomid(data?._id))}} className="mt-6 flex justify-center md:justify-start">
             <button className="px-6 py-2 bg-blue-900 text-white rounded-full hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300">
               Book Now
             </button>

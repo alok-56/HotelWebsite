@@ -91,13 +91,13 @@ console.log(hotel)
     <div className="min-h-screen flex flex-col w-full">
     {singleloading ?<Loadingoverlay/>:  <main className="flex-grow ">
         <div className="w-full mx-auto  mb-12">
-          <PropertyGallery images={galleryImages} propertyName={hotel?.Heading} />
+          <PropertyGallery images={hotel?.Image} propertyName={hotel?.Heading} />
         </div>
 
         <PropertyDescription
           name={hotel?.Heading}
           description={hotel?.Description}
-          price={propertyPrice}
+          price={hotel?.price}
           id={prop}
         />
 
@@ -112,15 +112,17 @@ console.log(hotel)
             luxury.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-5">
-            {[Room1, Room2, Room3, Room4, Room5].map((room, index) => (
+            {hotel?.Image?.rooms.map((room, index) => (
               <div
                 key={index}
                 className="rounded-xl overflow-hidden shadow-sm border bg-white"
               >
                 <div className="image-hover h-64">
-                  <Image
+                  <img
                     src={room}
                     alt={`Luxury room ${room}`}
+                    width={0}
+                    height={0}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -138,20 +140,17 @@ console.log(hotel)
             luxury.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-5">
-            {[
-              Resturenemnet1,
-              Resturenemnet2,
-              Resturenemnet3,
-              Resturenemnet4,
-            ].map((room, index) => (
+            {hotel?.Image?.restaurant.map((room, index) => (
               <div
                 key={index}
                 className="rounded-xl overflow-hidden shadow-sm border bg-white"
               >
                 <div className="image-hover h-64">
-                  <Image
+                  <img
                     src={room}
                     alt={`Luxury room ${room}`}
+                    height={0}
+                    width={0}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -165,21 +164,13 @@ console.log(hotel)
             Explore Other Area
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-5">
-            {[
-              Reception1,
-              Reception2,
-              Reception3,
-              Looby1,
-              Looby2,
-              Lift1,
-              Lift2,
-            ].map((room, index) => (
+            {hotel?.Image?.other.map((room, index) => (
               <div
                 key={index}
                 className="rounded-xl overflow-hidden shadow-sm border bg-white"
               >
                 <div className="image-hover h-64">
-                  <Image
+                  <img
                     src={room}
                     alt={`Luxury room ${room}`}
                     className="w-full h-full object-cover"
