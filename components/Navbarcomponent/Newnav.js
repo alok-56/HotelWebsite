@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Phone, Building2 } from "lucide-react";
+import { Phone, Building2,CalendarCheck } from "lucide-react";
 import Loginpage from "../Logincomponents/Loginpage";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchallhotels } from "@/lib/Redux/hotelSlice";
@@ -62,6 +62,19 @@ export default function OyoNavbar() {
               <div>
                 <p className="text-sm font-semibold">About Us</p>
                 <p className="text-xs text-gray-500">Know more about Brill</p>
+              </div>
+            </Link>
+          </div>
+
+          {/* My Booking */}
+          <div className="hidden md:flex items-center gap-2 border-r pr-6">
+            <div className="p-1 rounded-md bg-gray-100">
+              <CalendarCheck className="h-5 w-5 text-gray-700" />
+            </div>
+            <Link href="/booking" className="hover:text-red-600">
+              <div>
+                <p className="text-sm font-semibold">My Booking</p>
+                <p className="text-xs text-gray-500">View your reservations</p>
               </div>
             </Link>
           </div>

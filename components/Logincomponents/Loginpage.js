@@ -52,9 +52,9 @@ const Loginpage = () => {
 
     try {
       const result = await Userlogin(mobileNumber);
-
       if (result && result.status === true) {
         Cookies.set("token", result.token);
+         Cookies.set("phone", result.number);
         setIsLoggedIn(true);
         setDialogOpen(false);
         router.push("/");
