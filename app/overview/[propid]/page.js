@@ -360,7 +360,7 @@ export default function PropertyOverview() {
                   All Rooms
                 </h2>
                 <div className="grid grid-cols-1 gap-4 md:gap-12">
-                  {rooms.map((room, index) => (
+                  {rooms?.map((room, index) => (
                     <Room data={room} key={index} />
                   ))}
                 </div>

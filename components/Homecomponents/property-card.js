@@ -19,7 +19,7 @@ export function PropertyCard({
   images,
   propertyType,
   includedMeals,
-  id
+  id,
 }) {
   const [isLiked, setIsLiked] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -35,10 +35,7 @@ export function PropertyCard({
   const router = useRouter();
 
   return (
-    
-    <Card
-      className="group relative overflow-hidden rounded-xl border-0 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-300 hover:shadow-[0_8px_40px_rgb(0,0,0,0.16)]"
-    >
+    <Card className="group relative overflow-hidden rounded-xl border-0 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-300 hover:shadow-[0_8px_40px_rgb(0,0,0,0.16)]">
       <div className="relative ">
         <div className="relative aspect-[4/3] overflow-hidden ">
           <Image
@@ -127,8 +124,7 @@ export function PropertyCard({
         </div>
 
         {/* Content */}
-        <div       onClick={() => router.push(`/properties/${id}`)}
- className="p-5">
+        <div onClick={() => router.push(`/overview/${id}`)} className="p-5">
           <div className="flex items-start justify-between gap-4">
             <div>
               <h3 className="font-semibold md:text-xl text-gray-900 leading-tight">
