@@ -27,6 +27,45 @@ export default function OyoNavbar() {
         </Link>
 
         <div className="flex gap-4 items-center">
+          {/* Brill to Business */}
+          <div className="hidden md:flex items-center gap-2 border-r pr-6">
+            <div className="p-1 rounded-md bg-gray-100">
+              <Building2 className="h-5 w-5 text-gray-700" />
+            </div>
+            <Link href="/b2b" className="hover:text-red-600">
+              <div>
+                <p className="text-sm font-semibold">Brill to Business</p>
+                <p className="text-xs text-gray-500">Partner with us</p>
+              </div>
+            </Link>
+          </div>
+
+          {/* About Us */}
+          <div className="hidden md:flex items-center gap-2 border-r pr-6">
+            <div className="p-1 rounded-md bg-gray-100">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 text-gray-700"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 16h-1v-4h-1m1-4h.01M12 20c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z"
+                />
+              </svg>
+            </div>
+            <Link href="/about" className="hover:text-red-600">
+              <div>
+                <p className="text-sm font-semibold">About Us</p>
+                <p className="text-xs text-gray-500">Know more about Brill</p>
+              </div>
+            </Link>
+          </div>
+
           <div className="hidden md:flex items-center gap-2 border-r pr-6">
             <div className="p-1 rounded-md bg-gray-100">
               <Phone className="h-5 w-5 text-gray-700" />
